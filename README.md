@@ -1,3 +1,3 @@
 # CEN5035 Project
 
-This is the README for the project of CEN5035 :)
+Preparing to develop an Instant messaging software like Telegram
