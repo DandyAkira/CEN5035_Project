@@ -1,3 +1,11 @@
-# CEN5035 Project
+CEN5035 Project
+Preparing to develop an Instant messaging software like Telegram
 
-This is the README for the project of CEN5035 :)
+TODOs:
+Functions:
+ private chat
+ public chat
+ friend system
+ group chat
+Possible functions
+ file transfer
