@@ -50,18 +50,30 @@ func (thisServer *Server) Broadcast(user *User, msg string) {
 	thisServer.BroadcastChan <- sendMsg
 }
 
+func (thisServer *Server) UserOnline(user *User) {
+	thisServer.mapLock.Lock()
+	thisServer.OnlineMap[user.Name] = user
+	thisServer.mapLock.Unlock()
+	fmt.Println(user.Name + " is Online")
+
+	// 广播用户上线
+	thisServer.Broadcast(user, "already online")
+}
+
+func (thisServer *Server) UserOffline(user *User) {
+	thisServer.mapLock.Lock()
+	delete(thisServer.OnlineMap, user.Name)
+	thisServer.mapLock.Unlock()
+	fmt.Println(user.Name + " is Offline")
+}
+
 // 处理当前接入
 func (thisServer *Server) Handler(conn net.Conn) {
 
 	// 用户上线
-	newuser := NewUser(conn)
-	thisServer.mapLock.Lock()
-	thisServer.OnlineMap[newuser.Name] = newuser
-	thisServer.mapLock.Unlock()
-	fmt.Println(newuser.Name + " Successly Connected")
+	newuser := NewUser(conn, thisServer)
 
-	// 广播用户上线
-	thisServer.Broadcast(newuser, "already online")
+	thisServer.UserOnline(newuser)
 
 	// 接收客户端发送的消息
 	go func() {
@@ -69,7 +81,7 @@ func (thisServer *Server) Handler(conn net.Conn) {
 		for {
 			n, err := conn.Read(buf)
 			if n == 0 {
-				thisServer.Broadcast(newuser, " is offline")
+				thisServer.UserOffline(newuser)
 				return
 			}
 
