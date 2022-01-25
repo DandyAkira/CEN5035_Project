@@ -8,7 +8,7 @@ Preparing to develop an Instant messaging software like Telegram
 
  #### Functions:
 
-  - [ ] private chat
+  - [X] private chat
   - [ ] public chat
   - [ ] friend system
   - [ ] group chat
