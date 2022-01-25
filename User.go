@@ -31,10 +31,18 @@ func NewUser(conn net.Conn, server *Server) *User {
 	return user
 }
 
-// 监听当前user channel, 有消息时发送给Server
+func (thisUser *User) Push2Client(msg string) {
+	thisUser.conn.Write([]byte(msg))
+}
+
+func (thisUser *User) DoMessage(msg string) {
+	thisUser.connectedServer.Broadcast(thisUser, msg)
+}
+
+// 监听当前user channel
 func (thisUser *User) ListenMessage() {
 	for {
 		msg := <-thisUser.Ch
-		thisUser.conn.Write([]byte(msg + "\n"))
+		thisUser.Push2Client(msg + "\n")
 	}
 }

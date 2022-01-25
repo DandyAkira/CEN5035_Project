@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net"
+	"strings"
 	"sync"
 )
 
@@ -46,7 +47,7 @@ func (thisServer *Server) ListenBroadcastChan() {
 
 // 生成广播消息并送入广播通道
 func (thisServer *Server) Broadcast(user *User, msg string) {
-	sendMsg := "[" + user.Addr + "] " + user.Name + ": " + msg
+	sendMsg := "[" + user.Name + "] " + ": " + msg
 	thisServer.BroadcastChan <- sendMsg
 }
 
@@ -54,7 +55,7 @@ func (thisServer *Server) UserOnline(user *User) {
 	thisServer.mapLock.Lock()
 	thisServer.OnlineMap[user.Name] = user
 	thisServer.mapLock.Unlock()
-	fmt.Println(user.Name + " is Online")
+	fmt.Println("[" + user.Addr + "] " + user.Name + " is Online")
 
 	// 广播用户上线
 	thisServer.Broadcast(user, "already online")
@@ -64,7 +65,42 @@ func (thisServer *Server) UserOffline(user *User) {
 	thisServer.mapLock.Lock()
 	delete(thisServer.OnlineMap, user.Name)
 	thisServer.mapLock.Unlock()
-	fmt.Println(user.Name + " is Offline")
+	fmt.Println("[" + user.Addr + "] " + user.Name + " is Offline")
+}
+
+func (thisServer *Server) HandleMessage(msg string, user *User) {
+	msgSplit := strings.Split(msg, "|")
+	msgType := msgSplit[0]
+	switch msgType {
+	case "public":
+		msg_to_broadcast := "[" + user.Name + "] [public] : " + strings.Join(msgSplit[1:], "|")
+		thisServer.BroadcastChan <- msg_to_broadcast
+		break
+	case "private":
+		toWho := thisServer.OnlineMap[msgSplit[1]]
+		if toWho == nil {
+			user.Ch <- "No such User"
+		} else {
+			msg_to_send := "[" + user.Name + "] [private] : " + strings.Join(msgSplit[2:], "|")
+			toWho.Ch <- msg_to_send
+		}
+
+		break
+	case "who":
+		if len(thisServer.OnlineMap) > 1 {
+			sendMsg := "These Users are Online right now:\n"
+			for name, _ := range thisServer.OnlineMap {
+				if name != user.Name {
+					sendMsg = sendMsg + " [ " + name + " ] ;"
+				}
+			}
+			user.Ch <- sendMsg
+		} else {
+			user.Ch <- "No one is online right now, input 'back()' to exit"
+		}
+		break
+
+	}
 }
 
 // 处理当前接入
@@ -90,9 +126,9 @@ func (thisServer *Server) Handler(conn net.Conn) {
 				return
 			}
 
-			// 提取用户消息, 去除末尾的 '\n'
-			userMSG := string(buf[:n-1])
-			thisServer.Broadcast(newuser, userMSG)
+			userMSG := strings.Split(string(buf), "\n")[0]
+			//fmt.Println("conn read: ", userMSG)
+			thisServer.HandleMessage(userMSG, newuser)
 		}
 	}()
 
