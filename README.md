@@ -4,6 +4,7 @@
 
   - [x] private chat
   - [x] public chat
+  - [x] change username
   - [ ] friend system
   - [ ] group chat
 
@@ -11,7 +12,22 @@
 
  - [ ] file transfer
 
-## ==first  demo released==
+### what's new 1.25.2022 ###
+
+now users can change their username and chat with others by selecting user ID
+to customize username, you can fo it when you run a client by:
+     ```
+    ./client -name MyUserName
+    ```
+or you can follow the main menu to do this.
+
+for more parameters instructions, type:
+    ```
+    ./client -h
+    ```
+Have Fun :)
+
+## ==first demoreleased==
 
 ### how to build and run
 
