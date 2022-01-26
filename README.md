@@ -27,7 +27,7 @@ for more parameters instructions, type:
     ```
 Have Fun :)
 
-## ==first demoreleased==
+## == first demo ==
 
 ### how to build and run
 
