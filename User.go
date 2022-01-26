@@ -5,6 +5,7 @@ import (
 )
 
 type User struct {
+	ID   int
 	Name string
 	Addr string
 	Ch   chan string
@@ -14,10 +15,11 @@ type User struct {
 }
 
 // 创建新用户API
-func NewUser(conn net.Conn, server *Server) *User {
+func NewUser(conn net.Conn, server *Server, userID int) *User {
 	userAddr := conn.RemoteAddr().String()
 
 	user := &User{
+		ID:              userID,
 		Name:            userAddr,
 		Addr:            userAddr,
 		Ch:              make(chan string),

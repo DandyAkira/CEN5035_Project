@@ -48,6 +48,7 @@ func (thisClient *Client) menu() bool {
 
 	fmt.Println("(1) Public Chat")
 	fmt.Println("(2) Private Chat")
+	fmt.Println("(3) Change User Name")
 	fmt.Println("(0) Exit")
 
 	fmt.Scanln(&input)
@@ -56,7 +57,7 @@ func (thisClient *Client) menu() bool {
 		fmt.Println("str conv to int error: ", err)
 	}
 
-	if inputInt >= 0 && inputInt < 3 {
+	if inputInt >= 0 && inputInt < 4 {
 		thisClient.flag = inputInt
 		return true
 	} else {
@@ -105,7 +106,7 @@ func (thisClient *Client) PrivateChat() {
 	thisClient.LookforOnlineUsers()
 
 	nameReader := bufio.NewReader(os.Stdin)
-	fmt.Println(">>>>> Choose one you want to chat, input 'back()' to exit <<<<<")
+	fmt.Println(">>>>> Choose the ID you want to chat, input 'back()' to exit <<<<<")
 	inputName, _ := nameReader.ReadString('\n')
 	inputName = strings.TrimSpace(inputName)
 
@@ -117,6 +118,7 @@ func (thisClient *Client) PrivateChat() {
 		for inputContent != "back()" {
 			if len(inputContent) > 0 {
 				sendMSG := "private|" + inputName + "|" + inputContent
+				fmt.Println("Client Sending: ", sendMSG)
 
 				_, err := thisClient.conn.Write([]byte(sendMSG))
 				if err != nil {
@@ -135,7 +137,32 @@ func (thisClient *Client) PrivateChat() {
 		fmt.Println(">>>>> Choose one you want to chat, input 'back()' to exit <<<<<")
 		inputName, _ = nameReader.ReadString('\n')
 		inputName = strings.TrimSpace(inputName)
+	}
+}
 
+func (thisClient *Client) SetUserName(userName string) {
+	sendMSG := "rename|" + userName
+	_, err := thisClient.conn.Write([]byte(sendMSG))
+	if err != nil {
+		fmt.Println("conn write error: ", err)
+		return
+	}
+}
+
+func (thisClient *Client) ChangeNameSession() {
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Println(">>>>> Please input your new username, input 'back()' to exit <<<<<")
+	newName, _ := reader.ReadString('\n')
+	newName = strings.TrimSpace(newName)
+	for newName != "back()" {
+		if len(newName) > 0 {
+			thisClient.SetUserName(newName)
+		} else {
+			fmt.Println("Illegal Input")
+			newName, _ = reader.ReadString('\n')
+			newName = strings.TrimSpace(newName)
+		}
+		return
 	}
 }
 
@@ -146,22 +173,31 @@ func (thisClient *Client) Run() {
 		}
 		switch thisClient.flag {
 		case 1:
-			fmt.Println("you are right now at public chat channel")
+			fmt.Println(">>>> you are right now at public chat channel <<<<")
 			thisClient.PublicChat()
+			thisClient.flag = 999
 			break
 		case 2:
-			fmt.Println("you are right now at private chat")
+			fmt.Println(">>>> you are right now at private chat <<<<")
 			thisClient.PrivateChat()
+			thisClient.flag = 999
+			break
+		case 3:
+			fmt.Println(">>>> You are now at Change User Name Session <<<<")
+			thisClient.ChangeNameSession()
+			thisClient.flag = 999
 			break
 		}
 	}
 }
 
+var userName string
 var serverIP string
 var serverPort int
 
 func init() {
-	// ./client -ip 127.0.0.1 -port 8888
+	// ./client -ip 127.0.0.1 -port 8888 -name
+	flag.StringVar(&userName, "name", "", "choose a user name you like, default = local IP")
 	flag.StringVar(&serverIP, "ip", "127.0.0.1", "fill in Server IP, default = 127.0.0.1")
 	flag.IntVar(&serverPort, "port", 8888, "fill in Server Port, default = 8888")
 }
@@ -175,6 +211,10 @@ func main() {
 		fmt.Println("Client Failed to connected to the Server!")
 	}
 	fmt.Println("Client Connected successfully!")
+
+	if userName != "" {
+		client.SetUserName(userName)
+	}
 
 	go client.HandleMSG()
 
