@@ -140,7 +140,7 @@ func (thisServer *Server) Handler(conn net.Conn) {
 			}
 
 			userMSG := string(buf)
-			fmt.Println("conn read: ", userMSG)
+			fmt.Println("Server Read: " + "[" + newuser.Name + "] " + userMSG)
 			thisServer.HandleMessage(userMSG, newuser)
 		}
 	}()

@@ -78,7 +78,7 @@ func (thisClient *Client) PublicChat() {
 	for textMSG != "back()" {
 		if len(textMSG) > 0 {
 			sendMSG := "public|" + textMSG
-			fmt.Println("Client write msg: ", textMSG)
+			//fmt.Println("Client write msg: ", textMSG)
 			_, err := thisClient.conn.Write([]byte(sendMSG))
 			if err != nil {
 				fmt.Println("conn Write Error: ", err)
@@ -118,7 +118,7 @@ func (thisClient *Client) PrivateChat() {
 		for inputContent != "back()" {
 			if len(inputContent) > 0 {
 				sendMSG := "private|" + inputName + "|" + inputContent
-				fmt.Println("Client Sending: ", sendMSG)
+				//fmt.Println("Client Sending: ", sendMSG)
 
 				_, err := thisClient.conn.Write([]byte(sendMSG))
 				if err != nil {
