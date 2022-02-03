@@ -20,3 +20,14 @@ Preparing to develop an Instant messaging software like Telegram
   - [] register
   - [] login
   - [] private chat
+
+#### How to run
+```
+$ cd frontend
+```
+```
+$ yarn install
+```
+```
+$ yarn start
+```
