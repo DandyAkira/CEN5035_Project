@@ -17,9 +17,10 @@ Preparing to develop an Instant messaging software like Telegram
 
 ### Front End:
 #### Functions:
-  - [] register
-  - [] login
-  - [] private chat
+
+  - [ ] register
+  - [ ] login
+  - [ ] private chat
 
 #### How to run
 ```
