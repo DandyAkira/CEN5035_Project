@@ -5,17 +5,18 @@ Preparing to develop an Instant messaging software like Telegram
 ## TODOs:
 
 ### Back End:
-
- #### Functions:
+#### Functions:
 
   - [ ] private chat
   - [ ] public chat
   - [ ] friend system
   - [ ] group chat
-
- #### Possible functions
+#### Possible functions
 
  - [ ] file transfer
 
 ### Front End:
-
+#### Functions:
+  - [] register
+  - [] login
+  - [] private chat
