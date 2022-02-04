@@ -29,14 +29,10 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "REACT_APP_HTTP=true react-scripts start",
-    "https": "REACT_APP_HTTPS=true HTTPS=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron-start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "eject": "react-scripts eject"
   },
   "build": {
     "appId": "cn.edgar",
