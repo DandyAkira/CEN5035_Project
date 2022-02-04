@@ -1,4 +1,4 @@
-# Back End Develop Log
+# What is Accomplished at Back End side in Sprint1
 
 Demo for sprint1: https://youtu.be/LD7eqryyua0
 
@@ -7,12 +7,15 @@ Demo for sprint1: https://youtu.be/LD7eqryyua0
   - [x] private chat
   - [x] public chat
   - [x] change username
+
+
+## Futrue Functions
   - [ ] friend system
   - [ ] group chat
+  - [ ] file transfer (possible)
+  - [ ] voice chat (possible)
 
- ### Possible functions
-
- - [ ] file transfer
+# Back End Develop Log
 
 ### what's new 1.25.2022 ###
 
@@ -29,7 +32,7 @@ for more parameters instructions, type:
     ```
 Have Fun :)
 
-## == first demo ==
+## first demo
 
 ### how to build and run
 
