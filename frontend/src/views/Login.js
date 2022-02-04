@@ -46,7 +46,7 @@ class Login extends React.Component {
                 console.log(this.props)
                 const {setUsername, setChatRoom, setAvatar, setLogin} = this.props
                 setUsername(this.state.username)
-                setChatRoom(this.state.chatRoom)
+                // setChatRoom(this.state.chatRoom)
                 setAvatar(res.data.avatar)
                 setLogin(true)
                 history.push("/chatroom")
@@ -176,7 +176,7 @@ class Login extends React.Component {
 function mapDispatchToProps(dispatch) {
     return {
         setUsername: (username) => dispatch(setUsername(username)),
-        setChatRoom: (room) => dispatch(setChatRoom(room)),
+        // setChatRoom: (room) => dispatch(setChatRoom(room)),
         setAvatar: (avatar) => dispatch(setAvatar(avatar)),
         setLogin: (flag) => dispatch(setLogin(flag)),
     }
