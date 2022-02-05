@@ -202,7 +202,7 @@ func init() {
 	flag.IntVar(&serverPort, "port", 8888, "fill in Server Port, default = 8888")
 }
 
-func main() {
+func clientmain() {
 	// 解析命令行，获取serverIP和serverPort
 	flag.Parse()
 
