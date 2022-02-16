@@ -2,13 +2,6 @@
 
 ## What is new?
 
-sasa
-
-```
-sudo
-
-```
-
  - Build and Run on Windows Platform
  - User Register and Login (Access server with a user name is not being used for the first time will be registered as a new user directly)
 
