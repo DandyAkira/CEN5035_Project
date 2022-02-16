@@ -11,10 +11,14 @@ import (
 	"strings"
 )
 
+var userName string
+var password string
+var serverIP string
+var serverPort int
+
 type Client struct {
 	ServerIP  string
 	SeverPort int
-	UserName  string
 	conn      net.Conn
 	flag      int
 }
@@ -38,9 +42,29 @@ func NewClient(sIP string, sPort int) *Client {
 	return client
 }
 
-func (thisClient *Client) HandleMSG() {
+func (thisClient *Client) HandleMSG(msg string) {
+	fmt.Println(msg)
+	if msg == "[system] Login Fail" {
+		fmt.Println(">>>> Wrong Password <<<<")
+		fmt.Println(">>>> Please Restart the Program with Proper Username and Password <<<<")
+		os.Exit(1)
+	}
+}
+
+func (thisClient *Client) ReceiveMSG() {
 	//收到的消息 拷贝并打印， 永久循环并阻塞
-	io.Copy(os.Stdout, thisClient.conn)
+	buf := make([]byte, 4096)
+	for {
+		n, err := thisClient.conn.Read(buf)
+
+		if err != nil && err != io.EOF {
+			fmt.Println("Connection Read Error: ", err)
+			return
+		}
+
+		msg := string(buf[:n])
+		thisClient.HandleMSG(msg)
+	}
 }
 
 func (thisClient *Client) menu() bool {
@@ -140,8 +164,8 @@ func (thisClient *Client) PrivateChat() {
 	}
 }
 
-func (thisClient *Client) SetUserName(userName string) {
-	sendMSG := "rename|" + userName
+func (thisClient *Client) SetNickName(nickName string) {
+	sendMSG := "rename|" + nickName
 	_, err := thisClient.conn.Write([]byte(sendMSG))
 	if err != nil {
 		fmt.Println("conn write error: ", err)
@@ -151,12 +175,12 @@ func (thisClient *Client) SetUserName(userName string) {
 
 func (thisClient *Client) ChangeNameSession() {
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Println(">>>>> Please input your new username, input 'back()' to exit <<<<<")
+	fmt.Println(">>>>> Please input your new nickName, input 'back()' to exit <<<<<")
 	newName, _ := reader.ReadString('\n')
 	newName = strings.TrimSpace(newName)
 	for newName != "back()" {
 		if len(newName) > 0 {
-			thisClient.SetUserName(newName)
+			thisClient.SetNickName(newName)
 		} else {
 			fmt.Println("Illegal Input")
 			newName, _ = reader.ReadString('\n')
@@ -191,13 +215,10 @@ func (thisClient *Client) Run() {
 	}
 }
 
-var userName string
-var serverIP string
-var serverPort int
-
 func init() {
-	// ./client -ip 127.0.0.1 -port 8888 -name
-	flag.StringVar(&userName, "name", "", "choose a user name you like, default = local IP")
+	// ./client -ip 127.0.0.1 -port 8888 -username
+	flag.StringVar(&userName, "uname", "", "fill in UserName")
+	flag.StringVar(&password, "pwd", "", "fill in password")
 	flag.StringVar(&serverIP, "ip", "127.0.0.1", "fill in Server IP, default = 127.0.0.1")
 	flag.IntVar(&serverPort, "port", 8888, "fill in Server Port, default = 8888")
 }
@@ -206,17 +227,27 @@ func main() {
 	// 解析命令行，获取serverIP和serverPort
 	flag.Parse()
 
-	client := NewClient(serverIP, serverPort)
-	if client == nil {
-		fmt.Println("Client Failed to connected to the Server!")
+	if userName != "" && password != "" {
+
+		client := NewClient(serverIP, serverPort)
+		if client == nil {
+			fmt.Println("Client Failed to connected to the Server!")
+		}
+		fmt.Println("Client Connected successfully!")
+
+		sendMSG := "LoginInfo|" + userName + "|" + password
+		_, err1 := client.conn.Write([]byte(sendMSG))
+		if err1 != nil {
+			fmt.Println("conn write error: ", err1)
+			return
+		}
+
+		go client.ReceiveMSG()
+
+		client.Run()
+	} else {
+		fmt.Println(">>>> Illegal Username or PassWord <<<<")
+		fmt.Println(">>>> Please Restart the Program with Proper Username and Password <<<<")
 	}
-	fmt.Println("Client Connected successfully!")
 
-	if userName != "" {
-		client.SetUserName(userName)
-	}
-
-	go client.HandleMSG()
-
-	client.Run()
 }

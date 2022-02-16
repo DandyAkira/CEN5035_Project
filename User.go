@@ -4,22 +4,29 @@ import (
 	"net"
 )
 
+type UserInfo struct {
+	ID       int
+	UserName string
+	password string
+	NickName string
+}
+
 type User struct {
-	ID   int
-	Name string
-	Addr string
-	Ch   chan string
-	conn net.Conn
+	ID       int
+	Name     string
+	Addr     string
+	UserName string
+	Ch       chan string
+	conn     net.Conn
 
 	connectedServer *Server
 }
 
 // 创建新用户API
-func NewUser(conn net.Conn, server *Server, userID int) *User {
+func NewUser(conn net.Conn, server *Server) *User {
 	userAddr := conn.RemoteAddr().String()
 
 	user := &User{
-		ID:              userID,
 		Name:            userAddr,
 		Addr:            userAddr,
 		Ch:              make(chan string),
@@ -45,6 +52,6 @@ func (thisUser *User) DoMessage(msg string) {
 func (thisUser *User) ListenMessage() {
 	for {
 		msg := <-thisUser.Ch
-		thisUser.Push2Client(msg + "\n")
+		thisUser.Push2Client(msg)
 	}
 }

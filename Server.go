@@ -16,6 +16,9 @@ type Server struct {
 	OnlineMap     map[int]*User
 	OnlineMapLock sync.RWMutex
 
+	UserMap     map[string]*UserInfo
+	UserMapLock sync.RWMutex
+
 	// 消息广播channel
 	BroadcastChan chan string
 }
@@ -27,6 +30,7 @@ func NewServer(ip string, port int) *Server {
 	server := &Server{
 		Ip:            ip,
 		Port:          port,
+		UserMap:       make(map[string]*UserInfo),
 		OnlineMap:     make(map[int]*User),
 		BroadcastChan: make(chan string),
 	}
@@ -56,7 +60,7 @@ func (thisServer *Server) Broadcast(user *User, msg string) {
 
 func (thisServer *Server) UserOnline(user *User) {
 	thisServer.OnlineMapLock.Lock()
-	thisServer.OnlineMap[currentID] = user
+	thisServer.OnlineMap[user.ID] = user
 	thisServer.OnlineMapLock.Unlock()
 	fmt.Println("[" + user.Addr + "] " + user.Name + " is Online")
 
@@ -75,6 +79,39 @@ func (thisServer *Server) HandleMessage(msg string, user *User) {
 	msgSplit := strings.Split(msg, "|")
 	msgType := msgSplit[0]
 	switch msgType {
+
+	case "LoginInfo":
+		userName := msgSplit[1]
+		pwd := msgSplit[2]
+		userInfo, ok := thisServer.UserMap[userName]
+		if ok {
+			if pwd == userInfo.password {
+				user.Ch <- "[system] Login Success"
+				user.UserName = userName
+				user.Name = userInfo.NickName
+				thisServer.UserOnline(user)
+			} else {
+				user.Ch <- "[system] Login Fail"
+			}
+		} else {
+			newuserInfo := &UserInfo{
+				ID:       currentID,
+				UserName: userName,
+				password: pwd,
+				NickName: user.Addr,
+			}
+			thisServer.UserMapLock.Lock()
+			thisServer.UserMap[userName] = newuserInfo
+			thisServer.UserMapLock.Unlock()
+			user.Ch <- "[system] Register Success"
+			user.UserName = userName
+			user.ID = currentID
+			thisServer.UserOnline(user)
+			currentID += 1
+			fmt.Println(thisServer.UserMap)
+			fmt.Println(thisServer.OnlineMap)
+		}
+
 	case "public":
 		msg_to_broadcast := "[message] [" + user.Name + "] [public] : " + strings.Join(msgSplit[1:], "|")
 		thisServer.BroadcastChan <- msg_to_broadcast
@@ -106,8 +143,11 @@ func (thisServer *Server) HandleMessage(msg string, user *User) {
 	case "rename":
 		newName := msgSplit[1]
 		user.Name = newName
-		user.Ch <- "[system] Successfully changed your username to: [" + newName + "]"
-		thisServer.Broadcast(user, "already online")
+		thisServer.UserMapLock.Lock()
+		thisServer.UserMap[user.UserName].NickName = newName
+		thisServer.UserMapLock.Unlock()
+		user.Ch <- "[system] Successfully changed your nick name to: [" + newName + "]"
+		//thisServer.Broadcast(user, "already online")
 		break
 	default:
 		user.Ch <- "[system] Unknown Message Type"
@@ -119,10 +159,7 @@ func (thisServer *Server) HandleMessage(msg string, user *User) {
 func (thisServer *Server) Handler(conn net.Conn) {
 
 	// 用户上线
-	newuser := NewUser(conn, thisServer, currentID)
-	currentID += 1
-
-	thisServer.UserOnline(newuser)
+	newuser := NewUser(conn, thisServer)
 
 	// 接收客户端发送的消息
 	go func() {
@@ -139,7 +176,7 @@ func (thisServer *Server) Handler(conn net.Conn) {
 				return
 			}
 
-			userMSG := string(buf)
+			userMSG := string(buf[:n])
 			fmt.Println("Server Read: " + "[" + newuser.Name + "] " + userMSG)
 			thisServer.HandleMessage(userMSG, newuser)
 		}
