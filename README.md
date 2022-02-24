@@ -1,6 +1,14 @@
 # Back End Log for Sprint2
 
-## What is new?
+## What is new? (Feb 23 2022)
+
+ - This is the alpha version of back_end and Gator Chat
+ - Ready to run on browser!
+ - Basic Function completed
+ - connected to local Mysql
+ - default login page 127.0.0.1/user/login.shtml
+
+## Previous Logs (Feb 02 2022)
 
  - Build and Run on Windows Platform
  - User Register and Login (Access server with a user name is not being used for the first time will be registered as a new user directly)
