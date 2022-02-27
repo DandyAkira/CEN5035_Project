@@ -2,6 +2,26 @@
 
 ### API doc link
  https://easydoc.net/s/88012132/
+ 
+## What is new? (Feb 26 2022)
+ - now any domain name strats with `http://127.0.0.1` can leads to the login page
+ - database can be customed now by modifying the Database Init Parameters in db.go under database folder
+ - now the emial field in database is VARCHAR(150)
+ - add new unit test (see unit test description session)
+
+### Unit test description
+unit test provided in main_test.go under test folder
+since the chatting API requires token of the sender which is changed every time a user login, and the access of websockets between two users can not be acquired by other program, so we can not test chat API
+Here, we provide unit test for register and login at high cocurrency. using
+```go
+func TestRegister(t *testing.T)
+```
+and
+```go
+func TestLogin(t *testing.T)
+```
+And we found that the email field should be longer since if the length of user email is more than 50, the user will never login successfully since the email in database is wrong.
+After modifying, the test cases runs well.
 
 ## What is new? (Feb 23 2022)
 
