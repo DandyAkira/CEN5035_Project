@@ -1,69 +1,50 @@
-package controller
+package main
 
 import (
-	"GatorChat/global"
-	"GatorChat/model"
-	"GatorChat/service"
-	"GatorChat/utils"
-	"fmt"
-	"math/rand"
-	"net/http"
-	"strconv"
-	"strings"
+	"net"
 )
 
-func Login(writer http.ResponseWriter, request *http.Request) {
-	_ = request.ParseForm()
-	email := request.PostForm.Get("email")
-	fmt.Println("Receive Login Request from: ", email)
-	password := request.PostForm.Get("password")
-	user, err := service.UserService{}.Login(email, password)
-	if err != nil {
-		global.ResponseFail(writer, err.Error())
-	} else {
-		global.ResponseOk(writer, user, "Login Success")
-	}
+type User struct {
+	ID   int
+	Name string
+	Addr string
+	Ch   chan string
+	conn net.Conn
+
+	connectedServer *Server
 }
 
-func Register(writer http.ResponseWriter, request *http.Request) {
+// 创建新用户API
+func NewUser(conn net.Conn, server *Server, userID int) *User {
+	userAddr := conn.RemoteAddr().String()
 
-	_ = request.ParseForm()
-	email := request.PostForm.Get("email")
-	fmt.Println("Receive Register Request from: ", email)
-	if len(email) <= 0 || !strings.Contains(email, "@") {
-		global.ResponseFail(writer, "illegal email")
-		return
+	user := &User{
+		ID:              userID,
+		Name:            userAddr,
+		Addr:            userAddr,
+		Ch:              make(chan string),
+		conn:            conn,
+		connectedServer: server,
 	}
-	password := request.PostForm.Get("password")
-	if len(password) <= 0 {
-		global.ResponseFail(writer, "Illegal Password")
-		return
-	}
-	nickname := request.PostForm.Get("nickname")
-	if len(nickname) == 0 {
-		nickname = "user" + strconv.Itoa(rand.Intn(10000))
-	}
-	avatar := ""
-	sex := model.SEX_UNKNOW
 
-	user, err := service.UserService{}.Register(email, password, nickname, avatar, sex)
+	// 监听channel
+	go user.ListenMessage()
 
-	if err != nil {
-		global.ResponseFail(writer, err.Error())
-	} else {
-		global.ResponseOk(writer, user.Email, "Register Success at "+user.Createat.String())
-	}
+	return user
 }
 
-func GetUser(writer http.ResponseWriter, request *http.Request) {
-	var user model.User
-	if err := utils.Bind(request, &user); err != nil {
-		global.ResponseFail(writer, err.Error())
-	}
-	user, err := service.UserService{}.GetUserById(user.Id)
-	if err != nil {
-		global.ResponseFail(writer, err.Error())
-	} else {
-		global.ResponseOk(writer, user, "Get User OK")
+func (thisUser *User) Push2Client(msg string) {
+	thisUser.conn.Write([]byte(msg))
+}
+
+func (thisUser *User) DoMessage(msg string) {
+	thisUser.connectedServer.Broadcast(thisUser, msg)
+}
+
+// 监听当前user channel
+func (thisUser *User) ListenMessage() {
+	for {
+		msg := <-thisUser.Ch
+		thisUser.Push2Client(msg + "\n")
 	}
 }
