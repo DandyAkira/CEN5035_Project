@@ -1,0 +1,63 @@
+{{define "/user/login.shtml"}}
+<!DOCTYPE html>
+<html>
+<head>
+    {{template "/chat/head.shtml"}}
+</head>
+<body>
+
+<header class="mui-bar mui-bar-nav">
+    <h1 class="mui-title">Login</h1>
+</header>
+<div class="mui-content" id="pageapp">
+    <form id='login-form' class="mui-input-group">
+        <div class="mui-input-row">
+            <label>Email</label>
+            <input v-model="user.email" placeholder="Please Input your email" type="text" class="mui-input-clear mui-input">
+        </div>
+        <div class="mui-input-row">
+            <label>Password</label>
+            <input v-model="user.password" placeholder="Please Input your password" type="password" class="mui-input-clear mui-input">
+        </div>
+    </form>
+    <div class="mui-content-padded">
+        <button @click="login" type="button" class="mui-btn mui-btn-block mui-btn-primary">Login</button>
+        <div class="link-area"><a id='reg' href="register.shtml">Register</a>
+        </div>
+    </div>
+    <div class="mui-content-padded oauth-area">
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var app = new Vue({
+        el: "#pageapp",
+        data: function () {
+            return {
+                user: {
+                    email: "123@gmail.com",
+                    password: "123"
+                }
+            }
+        },
+        methods: {
+            login(){
+                //封装了promis
+                console.log(this.user);
+                util.post("login", this.user).then(res => {
+                    if (res.code !== 0) {
+                        return mui.toast(res.msg)
+                    } else {
+                        var url = "/chat/index.shtml?id="+res.data.id+"&token="+res.data.token;
+                        userInfo(res.data);
+                        userId(res.data.id);
+                        window.alert("Login Success")
+                        window.location.href = url;
+                    }
+                })
+            },
+        }
+    })
+</script>
+{{end}}
