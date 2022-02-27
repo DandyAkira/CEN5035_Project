@@ -5,35 +5,53 @@ import (
 	"GatorChat/model"
 	"GatorChat/service"
 	"GatorChat/utils"
+	"fmt"
+	"math/rand"
 	"net/http"
+	"strconv"
+	"strings"
 )
 
 func Login(writer http.ResponseWriter, request *http.Request) {
 	_ = request.ParseForm()
-	mobile := request.PostForm.Get("mobile")
+	email := request.PostForm.Get("email")
+	fmt.Println("Receive Login Request from: ", email)
 	password := request.PostForm.Get("password")
-	user, err := service.UserService{}.Login(mobile, password)
+	user, err := service.UserService{}.Login(email, password)
 	if err != nil {
-		global.Response(writer, -1, err.Error(), nil)
+		global.ResponseFail(writer, err.Error())
 	} else {
-		global.Response(writer, 0, "登录成功", user)
+		global.ResponseOk(writer, user, "Login Success")
 	}
 }
 
 func Register(writer http.ResponseWriter, request *http.Request) {
+
 	_ = request.ParseForm()
-	mobile := request.PostForm.Get("mobile")
+	email := request.PostForm.Get("email")
+	fmt.Println("Receive Register Request from: ", email)
+	if len(email) <= 0 || !strings.Contains(email, "@") {
+		global.ResponseFail(writer, "illegal email")
+		return
+	}
 	password := request.PostForm.Get("password")
+	if len(password) <= 0 {
+		global.ResponseFail(writer, "Illegal Password")
+		return
+	}
 	nickname := request.PostForm.Get("nickname")
+	if len(nickname) == 0 {
+		nickname = "user" + strconv.Itoa(rand.Intn(10000))
+	}
 	avatar := ""
 	sex := model.SEX_UNKNOW
 
-	user, err := service.UserService{}.Register(mobile, password, nickname, avatar, sex)
+	user, err := service.UserService{}.Register(email, password, nickname, avatar, sex)
 
 	if err != nil {
-		global.Response(writer, -1, err.Error(), nil)
+		global.ResponseFail(writer, err.Error())
 	} else {
-		global.Response(writer, 0, "", user)
+		global.ResponseOk(writer, user.Email, "Register Success at "+user.Createat.String())
 	}
 }
 
@@ -46,6 +64,6 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 	if err != nil {
 		global.ResponseFail(writer, err.Error())
 	} else {
-		global.ResponseOk(writer, user, "获取用户信息成功")
+		global.ResponseOk(writer, user, "Get User OK")
 	}
 }

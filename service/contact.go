@@ -16,12 +16,12 @@ type ContactService struct{}
 func (service ContactService) AddFriend(userid, dstid int64) error {
 	//如果加自己
 	if userid == dstid {
-		return errors.New("不能添加自己为好友啊")
+		return errors.New("you can not add yourself as a friend")
 	}
 	var dst_user model.User
 	if _, err := database.DB.Where("id = ?", dstid).Get(&dst_user); err != nil || dst_user.Id == 0 {
 		log.Println(err)
-		return errors.New("该用户不存在")
+		return errors.New("user not exists")
 	}
 	//判断是否已经加了好友
 	tmp := model.Contact{}
@@ -34,7 +34,7 @@ func (service ContactService) AddFriend(userid, dstid int64) error {
 	//获得1条记录
 	//如果存在记录说明已经是好友了不加
 	if tmp.Id > 0 {
-		return errors.New("该用户已经被添加过啦")
+		return errors.New("this user is already your friend")
 	}
 	//事务,
 	session := database.DB.NewSession()
@@ -133,11 +133,11 @@ func (service ContactService) JoinCommunity(userId, comId int64) error {
 
 func (service ContactService) CreateCommunity(comm model.Community) (ret model.Community, err error) {
 	if len(comm.Name) == 0 {
-		err = errors.New("缺少群名称")
+		err = errors.New("please input group name")
 		return ret, err
 	}
 	if comm.Ownerid <= 0 {
-		err = errors.New("请先登录")
+		err = errors.New("please login first")
 		return ret, err
 	}
 	com := model.Community{
@@ -146,7 +146,7 @@ func (service ContactService) CreateCommunity(comm model.Community) (ret model.C
 	num, _ := database.DB.Count(&com)
 
 	if num > 5 {
-		err = errors.New("一个用户最多只能创建5个群")
+		err = errors.New("you already created too many groups")
 		return com, err
 	} else {
 		comm.Createat = time.Now()

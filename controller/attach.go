@@ -29,6 +29,7 @@ func UploadLocal(writer http.ResponseWriter, request *http.Request) {
 	srcfile, head, err := request.FormFile("file")
 	if err != nil {
 		global.ResponseFail(writer, err.Error())
+		return
 	}
 
 	//todo 创建一个新文件d

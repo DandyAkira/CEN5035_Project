@@ -14,31 +14,41 @@ import (
 
 type UserService struct{}
 
-func (u UserService) Login(mobile, plainpwd string) (user model.User, err error) {
-	_, err = database.DB.Where("mobile = ?", mobile).Get(&user)
+func (u UserService) Login(email, plainpwd string) (user model.User, err error) {
+	_, err = database.DB.Where("email = ?", email).Get(&user)
 	if err != nil {
-		err = errors.New("该用户不存在")
-		return
+		fmt.Println("数据库查询出错, err: ", err.Error())
+		return user, err
+	}
+	if user.Id <= 0 {
+		err = errors.New("no such user")
+		return user, err
 	}
 	if !encrypt.ValidatePasswd(plainpwd, user.Salt, user.Password) {
-		err = errors.New("密码不正确")
-		return
+		err = errors.New("wrong password")
+		return user, err
 	}
+	// 刷新Token, 防止恶意登录
 	user.Token = utils.GenerateToken()
 	_, err = database.DB.Id(user.Id).Cols("token").Update(&user)
-	return
+	if err != nil {
+		fmt.Println("刷新token后写入出错, err: ", err.Error())
+		return user, err
+	}
+	return user, nil
 }
 
-func (u UserService) Register(mobile, plainpwd, nickname, avatar, sex string) (user model.User, err error) {
-	_, err = database.DB.Where("mobile = ?", mobile).Get(&user)
+func (u UserService) Register(email, plainpwd, nickname, avatar, sex string) (user model.User, err error) {
+	_, err = database.DB.Where("email = ?", email).Get(&user)
 	if err != nil {
-		return
+		fmt.Println("数据库查询出错, err: ", err.Error())
+		return user, err
 	}
 	if user.Id > 0 {
-		err = errors.New("该手机号已经被注册")
-		return
+		err = errors.New("this email is already used")
+		return user, err
 	}
-	user.Mobile = mobile
+	user.Email = email
 	user.Avatar = avatar
 	user.Nickname = nickname
 	user.Sex = sex
@@ -57,7 +67,6 @@ func (u UserService) Register(mobile, plainpwd, nickname, avatar, sex string) (u
 
 //查找某个用户
 func (s UserService) GetUserById(userId int64) (user model.User, err error) {
-	//首先通过手机号查询用户
 	_, err = database.DB.ID(userId).Get(&user)
-	return
+	return user, err
 }

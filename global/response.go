@@ -20,7 +20,7 @@ func ResponseOkList(w http.ResponseWriter, lists interface{}, total interface{})
 }
 
 func Response(writer http.ResponseWriter, code int, msg string, data interface{}) {
-	h := response.H{
+	h := response.Res{
 		Code: code,
 		Msg:  msg,
 		Data: data,
@@ -43,7 +43,7 @@ func ResponseList(w http.ResponseWriter, code int, data interface{}, total inter
 	//满足某一条件的全部记录数目
 	//测试 100
 	//20
-	h := response.H{
+	h := response.Res{
 		Code:  code,
 		Rows:  data,
 		Total: total,

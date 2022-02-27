@@ -51,7 +51,7 @@ func CreateCommunity(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		global.ResponseFail(w, err.Error())
 	} else {
-		global.ResponseOk(w, com, "")
+		global.ResponseOk(w, com, "New Group Success")
 	}
 }
 
@@ -73,7 +73,7 @@ func JoinCommunity(w http.ResponseWriter, req *http.Request) {
 func AddFriend(w http.ResponseWriter, req *http.Request) {
 	//定义一个参数结构体
 	/*request.ParseForm()
-	mobile := request.PostForm.Get("mobile")
+	email := request.PostForm.Get("email")
 	passwd := request.PostForm.Get("passwd")
 	*/
 	var arg request.ContactArg
@@ -86,6 +86,6 @@ func AddFriend(w http.ResponseWriter, req *http.Request) {
 	if err != nil {
 		global.ResponseFail(w, err.Error())
 	} else {
-		global.ResponseOk(w, nil, "好友添加成功")
+		global.ResponseOk(w, nil, "Add Friend Success")
 	}
 }

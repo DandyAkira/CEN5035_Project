@@ -1,6 +1,6 @@
 package response
 
-type H struct {
+type Res struct {
 	Code  int         `json:"code"`
 	Msg   string      `json:"msg"`
 	Data  interface{} `json:"data,omitempty"`

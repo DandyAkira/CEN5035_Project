@@ -10,7 +10,7 @@ const (
 
 type User struct {
 	Id       int64     `xorm:"pk autoincr bigint(64)" form:"id" json:"id"`
-	Mobile   string    `xorm:"varchar(20)" form:"mobile" json:"mobile"`
+	Email    string    `xorm:"varchar(150)" form:"email" json:"email"`
 	Password string    `xorm:"varchar(40)" form:"password" json:"-"`
 	Avatar   string    `xorm:"varchar(150)" form:"avatar" json:"avatar"`
 	Sex      string    `xorm:"varchar(2)" form:"sex" json:"sex"`
