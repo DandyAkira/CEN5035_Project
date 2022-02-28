@@ -21,7 +21,9 @@ and
 func TestLogin(t *testing.T)
 ```
 And we found that the email field should be longer since if the length of user email is more than 50, the user will never login successfully since the email in database is wrong.
-After modifying, the test cases runs well.
+After modifying, the test cases runs well and all unit test cases are successfully recorded
+![image](https://user-images.githubusercontent.com/54897058/156042417-69a0af7e-2fb9-4f64-8ca0-244d0a304c5a.png)
+
 
 ## What is new? (Feb 23 2022)
 
