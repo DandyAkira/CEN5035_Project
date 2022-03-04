@@ -77,6 +77,11 @@ test('(1, 2) is up', () => {
 test('(1, -2) is down', () => {
   expect(getDirection(1, -2)).toBe('down');
 });
+for (var i = 0; i < 1000; i++) {
+  test('The distance is 5', () => {
+    expect(getDistance({'pageX':3, 'pageY':4}, {'pageX':0, 'pageY':0}, ['pageX', 'pageY'])).toBe(5);
+  });
+}
 test('The distance is 5', () => {
   expect(getDistance({'pageX':3, 'pageY':4}, {'pageX':0, 'pageY':0}, ['pageX', 'pageY'])).toBe(5);
 });
@@ -95,6 +100,11 @@ test('The distance is 84.31488599292535', () => {
 test('The distance is 1762.1447159640436', () => {
   expect(getDistance({'pageX':555, 'pageY':666}, {'pageX':-22, 'pageY':-999}, ['pageX', 'pageY'])).toBe(1762.1447159640436);
 });
+for (var i = 0; i < 1000; i++) {
+  test('The angle is -126.86989764584402', () => {
+    expect(getAngle({'pageX':3, 'pageY':4}, {'pageX':0, 'pageY':0}, ['pageX', 'pageY'])).toBe(-126.86989764584402);
+  });
+}
 test('The angle is -126.86989764584402', () => {
   expect(getAngle({'pageX':3, 'pageY':4}, {'pageX':0, 'pageY':0}, ['pageX', 'pageY'])).toBe(-126.86989764584402);
 });
@@ -113,6 +123,11 @@ test('The angle is -45', () => {
 test('The scale is 0.1', () => {
   expect(getScale([{'pageX':-30, 'pageY':40}, {'pageX':0, 'pageY':0}],[{'pageX':-3, 'pageY':-4}, {'pageX':0, 'pageY':0}], ['pageX', 'pageY'])).toBe(0.1);
 });
+for (var i = 0; i < 1000; i++) {
+  test('The scale is 0.05', () => {
+    expect(getScale([{'pageX':-60, 'pageY':80}, {'pageX':0, 'pageY':0}],[{'pageX':-3, 'pageY':-4}, {'pageX':0, 'pageY':0}], ['pageX', 'pageY'])).toBe(0.05);
+  });
+}
 test('The scale is 0.05', () => {
   expect(getScale([{'pageX':-60, 'pageY':80}, {'pageX':0, 'pageY':0}],[{'pageX':-3, 'pageY':-4}, {'pageX':0, 'pageY':0}], ['pageX', 'pageY'])).toBe(0.05);
 });
