@@ -4,7 +4,7 @@ describe('Visit Gatorchat', () => {
   })
 })
 
-describe('Register/Login', () => {
+describe('Register', () => {
   /*beforEach(()=>{
       cy.visit('127.0.0.1')
   })*/
@@ -25,7 +25,11 @@ describe('Register/Login', () => {
       expect(text).to.contains('Register Success!');
     });
   })
-  it('Login', () => {
+})
+
+describe('Login/Logout', () => {
+  it('Login/Logout', () => {
+    //login
     cy.visit('127.0.0.1')
     cy.get('input[name=form_email]')
       .type('{selectall}{backspace}toto@gmail.com')
@@ -37,6 +41,11 @@ describe('Register/Login', () => {
       expect(text).to.contains('Login Success');
     });
     cy.url().should('include', '/chat/index.shtml')
+
+    //logout
+    cy.get('span[name=btn_profile]').click()
+    cy.contains('Logout').click()
+    cy.url().should('include', '/user/login.shtml')
   })
 })
 
@@ -73,10 +82,8 @@ describe('Add friend', () => {
     //handling prompt alert
     cy.window().then(($win) => {
         //stubbing prompt window
-        cy.stub($win, "prompt")
-          .returns('1');
-        cy.pause()
-        cy.contains('Confirm').click()
+        //cy.stub($win, "prompt").returns("1");
+        cy.contains('Cancel').click()
     });
   })
 })

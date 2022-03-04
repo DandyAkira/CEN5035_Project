@@ -26,7 +26,18 @@ https://youtu.be/QZf61EtCu3o
 - [ ] Send Video
 - [ ] Voice Chat
 
+## FrontEnd
 
+### How to run Cypress test
+- run Gatorchat
+```
+go run main.go
+```
+- execute the following command to open Cypress
+```
+yarn run cypress open
+```
+- click on the test file (sprint2_test.js) to start the test
 
 ## BackEnd
 
