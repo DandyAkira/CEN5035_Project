@@ -1,5 +1,11 @@
 {
   "devDependencies": {
-    "cypress": "^9.5.1"
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "babel-jest": "^27.5.1",
+    "cypress": "^9.5.1",
+    "jest": "^27.5.1"
   }
 }
