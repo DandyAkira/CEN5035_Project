@@ -7,9 +7,9 @@ Preparing to develop an Instant messaging software like Telegram
 ### Back End:
 #### Functions:
 
-  - [ ] private chat
-  - [ ] public chat
-  - [ ] friend system
+  - [x] private chat
+  - [x] public chat
+  - [x] friend system
   - [ ] group chat
 #### Possible functions
 
