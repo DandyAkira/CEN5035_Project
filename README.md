@@ -145,4 +145,4 @@ input the following into terminal, replace [My Username] and [My Password] into 
 ./client -uname [My Username] -pwd [My Password]
 ```
 
-# For Sprint 1, please see Sprint1.md
+### For Sprint 1, please see Sprint1.md
