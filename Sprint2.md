@@ -146,3 +146,10 @@ input the following into terminal, replace [My Username] and [My Password] into 
 ```
 ./client -uname [My Username] -pwd [My Password]
 ```
+
+## FrontEnd
+### How to run it
+
+### Cypress component test
+
+### Units test
