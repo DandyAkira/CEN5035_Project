@@ -153,3 +153,14 @@ input the following into terminal, replace [My Username] and [My Password] into 
 ### Cypress component test
 
 ### Units test
+
+We have some unit tests by using Jest. The first step is to install Jest:
+```
+yarn add --dev jest
+```
+Then, you could run Jest by using the code:
+```
+yarn jest
+```
+We picked some functions in the core codes(mui.js) of the frontend. Then we use Jest to verify the validity and repeatability of these cases. Here is our results below.
+![image](https://raw.githubusercontent.com/KalmanXiong/img_floder/main/WechatIMG2.png)
