@@ -36,6 +36,8 @@ After modifying, the test cases runs well and all unit test cases are successful
  - connected to local Mysql
  - default login page 127.0.0.1/user/login.shtml
 
+---------------------------------------------------------
+# Below is Old Version Logs, No need to build and run
 ## Previous Logs (Feb 02 2022)
 
  - Build and Run on Windows Platform
