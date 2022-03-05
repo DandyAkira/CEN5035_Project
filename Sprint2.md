@@ -26,7 +26,45 @@ https://youtu.be/QZf61EtCu3o
 - [ ] Send Video
 - [ ] Voice Chat
 
+## How to build?
+- Set DBMS: in our project, we use MySql. Create a new empty database named "gatorchat".
+- Open ./database/db.go , set "Driver", "DsName" with your own mysql username and password
+- cd to the root folder, then run our application with
+```
+go run main.go
+```
+- Have fun with it ^^
 
+## FrontEnd
+
+### Cypress component test
+
+Demo for cypress test: https://www.youtube.com/watch?v=Zpf2TR5T1Bs
+
+How to run Cypress test?
+
+- run Gatorchat
+```
+go run main.go
+```
+- execute the following command to open Cypress
+```
+yarn run cypress open
+```
+- click on the test file (sprint2_test.js) to start the test
+
+### Units test
+
+We have some unit tests by using Jest. The first step is to install Jest:
+```
+yarn add --dev jest
+```
+Then, you could run Jest by using the code:
+```
+yarn jest
+```
+We picked some functions in the core codes(mui.js) of the frontend. Then we use Jest to verify the validity and repeatability of these cases. Here is our results below.
+![image](https://raw.githubusercontent.com/KalmanXiong/img_floder/main/WechatIMG2.png)
 
 ## BackEnd
 
@@ -147,20 +185,3 @@ input the following into terminal, replace [My Username] and [My Password] into 
 ./client -uname [My Username] -pwd [My Password]
 ```
 
-## FrontEnd
-### How to run it
-
-### Cypress component test
-
-### Units test
-
-We have some unit tests by using Jest. The first step is to install Jest:
-```
-yarn add --dev jest
-```
-Then, you could run Jest by using the code:
-```
-yarn jest
-```
-We picked some functions in the core codes(mui.js) of the frontend. Then we use Jest to verify the validity and repeatability of these cases. Here is our results below.
-![image](https://raw.githubusercontent.com/KalmanXiong/img_floder/main/WechatIMG2.png)
