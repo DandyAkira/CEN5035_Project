@@ -1,3 +1,10 @@
+# Team members
+|  NAME   | GITHUB NAME  | EMAIL |
+|  :----:  | :----:  | :----:  |
+| Ruoyang Xiong  | KalmanXiong | xiongruoyang@ufl.edu |
+| Yandi Ma  | DandyAkira | yandi.ma@ufl.edu |
+| Zixuan Feng  | ErerF | zixuan.feng@ufl.edu |
+| Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu |
 # What is Accomplished at Back End side in Sprint1
 
 Preparing to develop an Instant messaging software like Telegram
