@@ -13,21 +13,21 @@
 <body>
 
 <header class="mui-bar mui-bar-nav">
-    <h1 class="mui-title">Register</h1>
+    <h1 class="mui-title">Please register</h1>
 </header>
 <div class="mui-content" id="pageapp">
     <form id='login-form' class="mui-input-group">
         <div class="mui-input-row">
             <label>Email</label>
-            <input required v-model="user.email" placeholder="Please Input your email" type="text" class="mui-input-clear mui-input">
+            <input required v-model="user.email" name="form_email" placeholder="Please Input your email" type="text" class="mui-input-clear mui-input">
         </div>
         <div class="mui-input-row">
             <label>Nickname</label>
-            <input required v-model="user.nickname" placeholder="Please Input your nickname" type="text" class="mui-input-clear mui-input">
+            <input required v-model="user.nickname" name="form_nickname" placeholder="Please Input your nickname" type="text" class="mui-input-clear mui-input">
         </div>
         <div class="mui-input-row">
             <label>Password</label>
-            <input required v-model="user.password" placeholder="Please Input your password" type="password" class="mui-input-clear mui-input">
+            <input required v-model="user.password" name="form_pwd" placeholder="Please Input your password" type="password" class="mui-input-clear mui-input">
         </div>
     </form>
     <div class="mui-content-padded">
@@ -63,7 +63,7 @@
                         return mui.toast(res.msg)
                     } else {
                         window.alert("Register Success!")
-                        window.location.href("/user/login.shtml")
+                        window.location.assign("/user/login.shtml")
                     }
                 })
             },
