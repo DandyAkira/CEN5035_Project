@@ -8,7 +8,7 @@
 
 ### Update (March 21 2022)
 
- - Add Friend via email (no need to now friend's ID)
+ - Add Friend via email (no need to know friend's ID)
  - Increase jump correlation between pages
 
 # Sprint2
