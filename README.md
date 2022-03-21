@@ -5,6 +5,12 @@
 | Yandi Ma  | DandyAkira | yandi.ma@ufl.edu |
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu |
+
+### Update (March 21 2022)
+
+ - Add Friend via email (no need to now friend's ID)
+ - Increase jump correlation between pages
+
 # Sprint2
 
 ### Sprint2 Demo
