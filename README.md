@@ -6,6 +6,10 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu |
 
+### Update (March 22 2022)
+
+ - Users can change their nickname in profile page
+
 ### Update (March 21 2022)
 
  - Add Friend via email (no need to know friend's ID)
