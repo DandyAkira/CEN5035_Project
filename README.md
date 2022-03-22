@@ -35,7 +35,7 @@ https://youtu.be/QZf61EtCu3o
 - [x] Friend System
 - [x] Send Emoji
 - [x] Send Picture
-- [ ] Change Nick Name
+- [x] Change Nick Name
 - [ ] Change Avatar
 
 ## Possible Future Functions
