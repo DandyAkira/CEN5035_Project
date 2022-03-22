@@ -13,21 +13,24 @@ import (
 type ContactService struct{}
 
 //自动添加好友
-func (service ContactService) AddFriend(userid, dstid int64) error {
-	//如果加自己
-	if userid == dstid {
-		return errors.New("you can not add yourself as a friend")
-	}
+func (service ContactService) AddFriend(userid int64, dstemail string) error {
+
 	var dst_user model.User
-	if _, err := database.DB.Where("id = ?", dstid).Get(&dst_user); err != nil || dst_user.Id == 0 {
-		log.Println(err)
+	if _, err := database.DB.Where("email = ?", dstemail).Get(&dst_user); err != nil || dst_user.Id == 0 {
+		log.Println(err.Error())
 		return errors.New("user not exists")
 	}
+
+	//如果加自己
+	if userid == dst_user.Id {
+		return errors.New("you can not add yourself as a friend")
+	}
+
 	//判断是否已经加了好友
 	tmp := model.Contact{}
 	//查询是否已经是好友
 	// 条件的链式操作
-	_, err := database.DB.Where("ownerid = ?", userid).And("dstid = ?", dstid).And("cate = ?", model.CONCAT_CATE_USER).Get(&tmp)
+	_, err := database.DB.Where("ownerid = ?", userid).And("dstid = ?", dst_user.Id).And("cate = ?", model.CONCAT_CATE_USER).Get(&tmp)
 	if err != nil {
 		return err
 	}
@@ -42,13 +45,13 @@ func (service ContactService) AddFriend(userid, dstid int64) error {
 	//插自己的
 	_, e2 := session.InsertOne(model.Contact{
 		Ownerid:  userid,
-		Dstid:    dstid,
+		Dstid:    dst_user.Id,
 		Cate:     model.CONCAT_CATE_USER,
 		Createat: time.Now(),
 	})
 	//插对方的
 	_, e3 := session.InsertOne(model.Contact{
-		Ownerid:  dstid,
+		Ownerid:  dst_user.Id,
 		Dstid:    userid,
 		Cate:     model.CONCAT_CATE_USER,
 		Createat: time.Now(),

@@ -76,13 +76,13 @@ func AddFriend(w http.ResponseWriter, req *http.Request) {
 	email := request.PostForm.Get("email")
 	passwd := request.PostForm.Get("passwd")
 	*/
-	var arg request.ContactArg
+	var arg request.AddFriendReq
 	if err := utils.Bind(req, &arg); err != nil {
 		global.ResponseFail(w, err.Error())
 		return
 	}
 	//调用service
-	err := contactService.AddFriend(arg.Userid, arg.Dstid)
+	err := contactService.AddFriend(arg.Userid, arg.DstEmail)
 	if err != nil {
 		global.ResponseFail(w, err.Error())
 	} else {

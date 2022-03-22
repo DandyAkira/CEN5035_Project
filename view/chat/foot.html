@@ -299,9 +299,9 @@
                     },
                     addfriend: function () {
                         var that = this;
-                        mui.prompt('', 'Input Friends ID', 'Add Friend', ['Cancel', 'Confirm'], function (e) {
+                        mui.prompt('', 'Input Friend\'s Email', 'Add Friend', ['Cancel', 'Confirm'], function (e) {
                             if (e.index === 1) {
-                                if (isNaN(e.value) || e.value <= 0) {
+                                if (e.value=="") {
                                     mui.toast('Illegal Input');
                                 } else {
                                     that._addfriend(e.value)
@@ -309,12 +309,12 @@
                             } else {
                                 //mui.toast('You cancelled an operation');
                             }
-                        }, 'div');
-                        document.querySelector('.mui-popup-input input').type = 'number';
+                        }, 'div')
+                        //document.querySelector('.mui-popup-input input').type = 'number';
                     },
                     _addfriend: function (dstobj) {
                         var that = this;
-                        post("contact/addfriend", {dstid: dstobj, userid: userId()}, function (res) {
+                        post("contact/addfriend", {dstemail: dstobj, userid: userId()}, function (res) {
                             if (res.code === 0) {
                                 mui.toast("Success!");
                                 that.loadfriends();
@@ -346,6 +346,33 @@
                                 mui.toast("success!");
                                 location.href = "/chat/group.shtml";
                                 that.loadcommunitys();
+                            } else {
+                                mui.toast(res.msg);
+                            }
+                        })
+                    },
+                    changename: function () {
+                        var that = this;
+                        mui.prompt('', 'Input New Nickname', 'Change Nickname', ['Cancel', 'Confirm'], function (e) {
+                            if (e.index === 1) {
+                                if (e.value == "") {
+                                    mui.toast('Illegal Input');
+                                } else {
+                                    that._changename(e.value)
+                                    //mui.toast(e.value)
+                                }
+                            } else {
+                                //mui.toast('You cancelled an operation');
+                            }
+                        }, 'div');
+                        document.querySelector('.mui-popup-input input').type = 'text';
+                    },
+                    _changename: function (value) {
+                        var that = this;
+                        post("profile/changename", {newname: value, userid: userId()}, function (res) {
+                            if (res.code === 0) {
+                                alert("Success, Please ReLogin");
+                                window.location.href = "/user/login.shtml";
                             } else {
                                 mui.toast(res.msg);
                             }
