@@ -9,6 +9,10 @@
 ### Update (March 22 2022)
 
  - Users can change their nickname in profile page
+ - Password encryption implemented
+
+#### Password encryption
+Users' password will not be directly saved in database, it will be mixed with a random salt string and will be MD5 encrypted. The salt string will change everytime the user login, so the encrypted password saved in the database will keep changing.
 
 ### Update (March 21 2022)
 
