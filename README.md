@@ -6,6 +6,10 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu |
 
+### Update (March 23 2022)
+#### About Avatars/icons
+Now users' default icon is a gator icon, users can also change their icon by using the images under /assets/images, and can be normally and correctly shown on other clients' sides. Fully customed avatar still can not be correctly displayed on other clients.
+
 ### Update (March 22 2022)
 
  - Users can change their nickname in profile page
