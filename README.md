@@ -1,10 +1,10 @@
 # Team members
 |  NAME   | GITHUB NAME  | EMAIL |
 |  :----:  | :----:  | :----:  |
-| Ruoyang Xiong  | KalmanXiong | xiongruoyang@ufl.edu |
-| Yandi Ma  | DandyAkira | yandi.ma@ufl.edu |
-| Zixuan Feng  | ErerF | zixuan.feng@ufl.edu |
-| Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu |
+| Ruoyang Xiong (Front End)  | KalmanXiong | xiongruoyang@ufl.edu |
+| Yandi Ma (Back End)  | DandyAkira | yandi.ma@ufl.edu |
+| Zixuan Feng (Front End)  | ErerF | zixuan.feng@ufl.edu |
+| Jiaqi Cheng (Back End)  | TR280 | jiaqicheng@ufl.edu |
 # Sprint2
 
 ### Sprint2 Demo
