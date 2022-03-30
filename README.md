@@ -20,6 +20,7 @@ They each receive three responses from the server, where code = 0 means success 
  - "code":0,"msg":"Change Name Sucess"
 
 The results are as follows, there is no fault during the tests:
+
 ![image](https://user-images.githubusercontent.com/54897058/160928516-05ac0463-9213-4d9c-a96f-60fa02642436.png)
 
 #### About Test Cases of "Create New Group"
@@ -29,6 +30,7 @@ The test file will send 7 requests to to create new groups on behalf of each use
  - {"code":-1,"msg":"you already created too many groups"}
 
 The results of testing create group cases of one user is as follows, no fault happens:
+
 ![image](https://user-images.githubusercontent.com/54897058/160930824-6e1629b0-9b41-4982-ac4b-bfa0a1c4424c.png)
 
 ### Update (March 23 2022)
