@@ -18,6 +18,7 @@ They each receive three responses from the server, where code = 0 means success 
  - "code":-1,"msg":"new name same to current one"
  - "code":-1,"msg":"illegal nickname"
  - "code":0,"msg":"Change Name Sucess"
+
 The results are as follows, there is no fault during the tests:
 ![image](https://user-images.githubusercontent.com/54897058/160928516-05ac0463-9213-4d9c-a96f-60fa02642436.png)
 
@@ -26,6 +27,7 @@ The results are as follows, there is no fault during the tests:
 The test file will send 7 requests to to create new groups on behalf of each user in the database, since the backend logic limits the number of groups that each user can create to 5, so after there are 5 groups created by the same user, he can not create groups anymore, for each user they will receive responses from server as follows:
  - {"code":0,"msg":"New Group Success","data":{"id":1,"name":"group_sEdQ","ownerid":1,"icon":"/asset/images/community.png","cate":0,"memo":"","createat":"2022-03-30T17:00:00.3993923-04:00"}}
  - {"code":-1,"msg":"you already created too many groups"}
+
 The results of testing create group cases of one user is as follows, no fault happens:
 ![image](https://user-images.githubusercontent.com/54897058/160930824-6e1629b0-9b41-4982-ac4b-bfa0a1c4424c.png)
 
