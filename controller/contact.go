@@ -41,7 +41,7 @@ func LoadCommunity(w http.ResponseWriter, req *http.Request) {
 
 func CreateCommunity(w http.ResponseWriter, req *http.Request) {
 	var arg model.Community
-	//如果这个用的上,那么可以直接
+
 	if err := utils.Bind(req, &arg); err != nil {
 		log.Println(err)
 		global.ResponseFail(w, err.Error())
@@ -76,13 +76,13 @@ func AddFriend(w http.ResponseWriter, req *http.Request) {
 	email := request.PostForm.Get("email")
 	passwd := request.PostForm.Get("passwd")
 	*/
-	var arg request.ContactArg
+	var arg request.AddFriendReq
 	if err := utils.Bind(req, &arg); err != nil {
 		global.ResponseFail(w, err.Error())
 		return
 	}
 	//调用service
-	err := contactService.AddFriend(arg.Userid, arg.Dstid)
+	err := contactService.AddFriend(arg.Userid, arg.DstEmail)
 	if err != nil {
 		global.ResponseFail(w, err.Error())
 	} else {

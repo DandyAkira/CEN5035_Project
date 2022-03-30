@@ -19,7 +19,6 @@ func main() {
 	// 2. 注册路由
 	http.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		http.Redirect(writer, request, "/user/login.shtml", http.StatusFound)
-		return
 	})
 	http.HandleFunc("/login", controller.Login)
 	http.HandleFunc("/register", controller.Register)
@@ -29,6 +28,7 @@ func main() {
 	http.HandleFunc("/contact/createcommunity", controller.CreateCommunity)
 	http.HandleFunc("/contact/joincommunity", controller.JoinCommunity)
 	http.HandleFunc("/contact/addfriend", controller.AddFriend)
+	http.HandleFunc("/profile/changename", controller.ChangeName)
 	http.HandleFunc("/chat", controller.Chat)
 	http.HandleFunc("/attach/upload", controller.Upload)
 

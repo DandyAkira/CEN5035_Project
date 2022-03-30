@@ -65,6 +65,25 @@ func (u UserService) Register(email, plainpwd, nickname, avatar, sex string) (us
 	return user, nil
 }
 
+func (u UserService) ChangeName(userId int64, name string) error {
+	user := model.User{}
+	_, err := database.DB.Where("id = ?", userId).Get(&user)
+	if err != nil {
+		return errors.New("can not find user")
+	}
+	fmt.Println(user.Nickname, " ---> ", name)
+	if user.Nickname == name {
+		return errors.New("new name same to current one")
+	}
+	user.Nickname = name
+	_, err = database.DB.Id(userId).Update(&user)
+	if err != nil {
+		return err
+	} else {
+		return nil
+	}
+}
+
 //查找某个用户
 func (s UserService) GetUserById(userId int64) (user model.User, err error) {
 	_, err = database.DB.ID(userId).Get(&user)
