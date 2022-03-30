@@ -148,7 +148,7 @@ func (service ContactService) CreateCommunity(comm model.Community) (ret model.C
 	}
 	num, _ := database.DB.Count(&com)
 
-	if num > 5 {
+	if num > 4 {
 		err = errors.New("you already created too many groups")
 		return com, err
 	} else {
@@ -172,7 +172,7 @@ func (service ContactService) CreateCommunity(comm model.Community) (ret model.C
 		} else {
 			_ = session.Commit()
 		}
-		return com, err
+		return comm, err
 	}
 }
 

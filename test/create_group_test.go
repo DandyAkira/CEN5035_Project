@@ -25,7 +25,7 @@ func Fake_Group_Req(user model.User) string {
 
 func TestCreateGroup(t *testing.T) {
 	for _, user := range users {
-		for i := 0; i < 6; i++ {
+		for i := 0; i < 7; i++ {
 			str := Fake_Group_Req(user)
 			response, _ := http.Post("http://127.0.0.1/contact/createcommunity", "application/x-www-form-urlencoded", strings.NewReader(str))
 			s, _ := ioutil.ReadAll(response.Body)

@@ -5,6 +5,7 @@ import (
 	"GatorChat/model"
 	"GatorChat/service"
 	"GatorChat/utils"
+	"errors"
 	"fmt"
 	"math/rand"
 	"net/http"
@@ -71,6 +72,10 @@ func GetUser(writer http.ResponseWriter, request *http.Request) {
 func ChangeName(w http.ResponseWriter, r *http.Request) {
 	_ = r.ParseForm()
 	newname := r.PostForm.Get("newname")
+	if len(newname) <= 0 {
+		global.ResponseFail(w, errors.New("illegal nickname").Error())
+		return
+	}
 	useridstring := r.PostForm.Get("userid")
 	userId, err := strconv.ParseInt(useridstring, 10, 64)
 	if err != nil {

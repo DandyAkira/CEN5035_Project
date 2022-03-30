@@ -32,6 +32,7 @@ func NewFakeRequest_DiffName(user model.User) *fake_Change_Name {
 		Name: newname,
 	}
 }
+
 func NewFakeRequest_SameName(user model.User) *fake_Change_Name {
 	return &fake_Change_Name{
 		ID:   user.Id,
@@ -39,18 +40,34 @@ func NewFakeRequest_SameName(user model.User) *fake_Change_Name {
 	}
 }
 
+func NewFakeRequest_NilName(user model.User) *fake_Change_Name {
+	return &fake_Change_Name{
+		ID:   user.Id,
+		Name: "",
+	}
+}
+
 func TestChangeName(t *testing.T) {
 	for _, user := range GetAllUser() {
+		// Same Name Test
 		same_name_req := NewFakeRequest_SameName(user)
 		str := "userid=" + strconv.FormatInt(same_name_req.ID, 10) + "&newname=" + same_name_req.Name
 		response, _ := http.Post("http://127.0.0.1/profile/changename", "application/x-www-form-urlencoded", strings.NewReader(str))
 		s, _ := ioutil.ReadAll(response.Body)
 		fmt.Printf("%s\n", s)
+
+		// Nil Name Test
+		nil_name_req := NewFakeRequest_NilName(user)
+		str = "userid=" + strconv.FormatInt(nil_name_req.ID, 10) + "&newname=" + nil_name_req.Name
+		response, _ = http.Post("http://127.0.0.1/profile/changename", "application/x-www-form-urlencoded", strings.NewReader(str))
+		s, _ = ioutil.ReadAll(response.Body)
+		fmt.Printf("%s\n", s)
+
+		// Diff Name Test
 		diff_name_req := NewFakeRequest_DiffName(user)
 		str = "userid=" + strconv.FormatInt(diff_name_req.ID, 10) + "&newname=" + diff_name_req.Name
 		response, _ = http.Post("http://127.0.0.1/profile/changename", "application/x-www-form-urlencoded", strings.NewReader(str))
 		s, _ = ioutil.ReadAll(response.Body)
 		fmt.Printf("%s\n", s)
-
 	}
 }
