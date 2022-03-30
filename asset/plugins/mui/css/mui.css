@@ -1235,8 +1235,8 @@ input[type='submit'],
 .mui-btn-blue
 {
     color: #fff;
-    border: 1px solid #007aff;
-    background-color: #007aff;
+    border: 1px solid #00529b;
+    background-color: #00529b;
 }
 input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 .mui-btn-primary:enabled:active,
@@ -1245,8 +1245,8 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 .mui-btn-blue.mui-active:enabled
 {
     color: #fff;
-    border: 1px solid #0062cc;
-    background-color: #0062cc;
+    border: 1px solid #00529b;
+    background-color: #00529b;
 }
 
 .mui-btn-positive,
@@ -1498,6 +1498,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
     margin: 0;
 
     text-overflow: ellipsis;
+    color: write;
 }
 .mui-bar .mui-backdrop
 {
@@ -1546,6 +1547,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 
     -webkit-box-shadow: 0 1px 6px #ccc;
             box-shadow: 0 1px 6px #ccc;
+    background-color: #fb6502;
 }
 .mui-bar-nav ~ .mui-content .mui-anchor
 {
@@ -1565,8 +1567,8 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 
 .mui-title
 {
-    font-size: 17px;
-    font-weight: 500;
+    font-size: 25px;
+    font-weight: 700;
     line-height: 44px;
 
     position: absolute;
@@ -1580,7 +1582,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
     text-align: center;
     white-space: nowrap;
 
-    color: #000;
+    color: #ffffff;
 }
 
 .mui-title a
