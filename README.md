@@ -1,10 +1,10 @@
 # Team members
-|  NAME   | GITHUB NAME  | EMAIL |
-|  :----:  | :----:  | :----:  |
-| Ruoyang Xiong  | KalmanXiong | xiongruoyang@ufl.edu |
-| Yandi Ma  | DandyAkira | yandi.ma@ufl.edu |
-| Zixuan Feng  | ErerF | zixuan.feng@ufl.edu |
-| Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu |
+|  NAME   | GITHUB NAME  | EMAIL | DUTY |
+|  :----:  | :----:  | :----:  | :----:  |
+| Ruoyang Xiong  | KalmanXiong | xiongruoyang@ufl.edu | Front-End |
+| Yandi Ma  | DandyAkira | yandi.ma@ufl.edu | Back-End |
+| Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
+| Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
 ### Update (March 23 2022)
 #### About Avatars/icons
