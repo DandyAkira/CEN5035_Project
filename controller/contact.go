@@ -41,7 +41,7 @@ func LoadCommunity(w http.ResponseWriter, req *http.Request) {
 
 func CreateCommunity(w http.ResponseWriter, req *http.Request) {
 	var arg model.Community
-	//如果这个用的上,那么可以直接
+
 	if err := utils.Bind(req, &arg); err != nil {
 		log.Println(err)
 		global.ResponseFail(w, err.Error())

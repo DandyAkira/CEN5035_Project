@@ -71,7 +71,7 @@ func (u UserService) ChangeName(userId int64, name string) error {
 	if err != nil {
 		return errors.New("can not find user")
 	}
-	fmt.Println(user)
+	fmt.Println(user.Nickname, " ---> ", name)
 	if user.Nickname == name {
 		return errors.New("new name same to current one")
 	}
