@@ -6,6 +6,29 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
+### Update (March 30 2022)
+
+ - Add Test Cases of "Change Nickname" and "Create New Group"
+ - Optimized some background logic
+
+#### About Test Cases of "Change Nickname"
+##### Test file source code : test/change_name_test.go
+The test file will send 3 requests to change the nickname on behalf of each user in the database, They will request their nickname be changed to NULL, the same name to original one, and a different name, respectively.
+They each receive three responses from the server, where code = 0 means success and code = -1 means fail:
+ - "code":-1,"msg":"new name same to current one"
+ - "code":-1,"msg":"illegal nickname"
+ - "code":0,"msg":"Change Name Sucess"
+The results are as follows, there is no fault during the tests:
+![image](https://user-images.githubusercontent.com/54897058/160928516-05ac0463-9213-4d9c-a96f-60fa02642436.png)
+
+#### About Test Cases of "Create New Group"
+##### Test file source code : test/create_group_test.go
+The test file will send 7 requests to to create new groups on behalf of each user in the database, since the backend logic limits the number of groups that each user can create to 5, so after there are 5 groups created by the same user, he can not create groups anymore, for each user they will receive responses from server as follows:
+ - {"code":0,"msg":"New Group Success","data":{"id":1,"name":"group_sEdQ","ownerid":1,"icon":"/asset/images/community.png","cate":0,"memo":"","createat":"2022-03-30T17:00:00.3993923-04:00"}}
+ - {"code":-1,"msg":"you already created too many groups"}
+The results of testing create group cases of one user is as follows, no fault happens:
+![image](https://user-images.githubusercontent.com/54897058/160930824-6e1629b0-9b41-4982-ac4b-bfa0a1c4424c.png)
+
 ### Update (March 23 2022)
 #### About Avatars/icons
 Now users' default icon is a gator icon, users can also change their icon by using the images under /assets/images, and can be normally and correctly shown on other clients' sides. Fully customed avatar still can not be correctly displayed on other clients.
