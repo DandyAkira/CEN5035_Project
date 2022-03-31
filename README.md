@@ -26,11 +26,11 @@
 
 ### Register
 
-![image](https://user-images.githubusercontent.com/54897058/161130227-32e7a98f-b382-4c39-bea6-d57271ef43d8.png)
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/register.PNG)
 
 ### Login
 
-![image](https://user-images.githubusercontent.com/54897058/161130290-e3cf9402-96f9-42ce-aeef-3b4f05bb3dc6.png)
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/login.PNG)
 
 ### Main Page
 
