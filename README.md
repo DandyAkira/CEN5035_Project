@@ -6,6 +6,60 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
+# Sprint 3
+
+## How to Run the Program
+
+### The preparatory work
+
+1. Download the code from main branch
+2. create a new database called "gatorchat" in MySQL by using `CREATE DATABASE gatorchat`
+3. open database/db.go and modify the configuration statements (name and password) according to your own MySQL settings
+![image](https://user-images.githubusercontent.com/54897058/161132955-70296cce-2084-4a2e-9330-d42b0af8ab94.png)
+
+### Run Program
+
+1. run main.go
+2. open a browser and jump to http://127.0.0.1 then have fun :)
+
+## Screenshots for the program
+
+### Register
+
+![image](https://user-images.githubusercontent.com/54897058/161130227-32e7a98f-b382-4c39-bea6-d57271ef43d8.png)
+
+### Login
+
+![image](https://user-images.githubusercontent.com/54897058/161130290-e3cf9402-96f9-42ce-aeef-3b4f05bb3dc6.png)
+
+### Main Page
+
+![image](https://user-images.githubusercontent.com/54897058/161130697-57b052ee-0703-443c-a082-87403601244d.png)
+
+
+### Add Friend
+
+![image](https://user-images.githubusercontent.com/54897058/161130588-bc01bf2b-5554-40b3-9af6-e72218929c3f.png)
+
+### Private Chat
+
+![image](https://user-images.githubusercontent.com/54897058/161130997-610d46bf-2454-4530-b015-230d174e6e09.png)
+
+### Create New Group
+
+![image](https://user-images.githubusercontent.com/54897058/161131288-211a3d29-2cc0-473c-9389-bf1f79d7442c.png)
+
+### Join Group
+
+![image](https://user-images.githubusercontent.com/54897058/161131371-751b7e8c-8d58-4f77-857c-89b2f5c507f4.png)
+
+
+### Group Chat
+
+![image](https://user-images.githubusercontent.com/54897058/161131657-97404d18-b5fc-4bd9-b6fc-d45a8274745f.png)
+
+## Back End Log
+
 ### Update (March 30 2022)
 
  - Add Test Cases of "Change Nickname" and "Create New Group"
