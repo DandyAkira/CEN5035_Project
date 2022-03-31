@@ -2,9 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    {{template "/chat/head.shtml"}}
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-    <!-- <title>Register</title> -->
+    <title>Register</title>
     <link rel="stylesheet" href="/asset/plugins/mui/css/mui.css"/>
     <link rel="stylesheet" href="/asset/css/login.css"/>
     <script src="/asset/plugins/mui/js/mui.js"></script>
@@ -64,20 +63,7 @@
                         mui.toast(res.msg)
                     } else {
                         alert("Register Success!");
-                        //window.location.href("/user/login.shtml");
-
-
-                        util.post("login", this.user).then(res => {
-                            if (res.code !== 0) {
-                                return mui.toast(res.msg)
-                            } else {
-                                var url = "/chat/index.shtml?id="+res.data.id+"&token="+res.data.token;
-                                userInfo(res.data);
-                                userId(res.data.id);
-                                //window.alert("Login Success")
-                                window.location.href = url;
-                            }
-                        })
+                        window.location.href("/user/login.shtml");
                     }
                 })
             },
