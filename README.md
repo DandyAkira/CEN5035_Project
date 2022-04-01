@@ -5,47 +5,10 @@
 | Yandi Ma  | DandyAkira | yandi.ma@ufl.edu | Back-End |
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
+
 # Sprint 3
 
 ## The preparatory work
-
-Preparing to develop an Instant messaging software like Telegram
-
-## TODOs:
-
-### Back End:
-#### Functions:
-
-  - [ ] private chat
-  - [ ] public chat
-  - [ ] friend system
-  - [ ] group chat
-#### Possible functions
-
- - [ ] file transfer
-
-### Front End:
-#### Functions:
-
-  - [ ] register
-  - [ ] login
-  - [ ] private chat
-
-#### How to run
-```
-$ cd frontend
-```
-```
-$ yarn install
-```
-```
-$ yarn start
-```
-=======
-  - [x] private chat
-  - [x] public chat
-  - [x] change username
->>>>>>> develop
 
 1. Download the code from main branch
 2. create a new database called "gatorchat" in MySQL by using `CREATE DATABASE gatorchat`
