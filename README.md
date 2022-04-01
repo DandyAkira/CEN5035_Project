@@ -26,7 +26,9 @@
 - [x] Send Video
 - [ ] Voice Chat
 
-## The preparatory work
+## How to run the app?
+
+### The preparatory work
 
 1. Download the code from main branch
 2. create a new database called "gatorchat" in MySQL by using `CREATE DATABASE gatorchat`
@@ -35,7 +37,11 @@
 
 ### Run Program
 
-1. run main.go
+1. run the app by typing
+```
+go run main.go
+```
+
 2. open a browser and jump to http://127.0.0.1 then have fun :)
 
 ## Screenshots for the program
