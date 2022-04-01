@@ -1479,6 +1479,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 
     border-bottom: 0;
     background-color: #f7f7f7;
+    /*background-color: #E3F1FE;*/
     -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .85);
             box-shadow: 0 0 1px rgba(0, 0, 0, .85);
 
@@ -1624,7 +1625,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 }
 .mui-bar-tab .mui-tab-item.mui-active
 {
-    color: #007aff;
+    color: #00529b;
 }
 .mui-bar-tab .mui-tab-item .mui-icon
 {
@@ -1648,6 +1649,15 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 {
     background: none;
 }
+
+.mui-bar-tab .mui-tab-item .mui-icon:hover{
+    background: none;
+    color: #00529b;
+}
+
+
+
+
 
 .mui-focusin > .mui-bar-nav,
 .mui-focusin > .mui-bar-header-secondary
