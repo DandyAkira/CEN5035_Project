@@ -8,6 +8,24 @@
 
 # Sprint 3
 
+## Functions
+
+- [x] Register
+- [x] Login
+- [x] Private Chat
+- [x] Group Chat
+- [ ] ~~Public Chat~~    (Deleted)
+- [x] Friend System
+- [x] Send Emoji
+- [x] Send Picture
+- [x] Change Nick Name
+- [x] Change Avatar
+
+## Possible Future Functions
+
+- [x] Send Video
+- [ ] Voice Chat
+
 ## The preparatory work
 
 1. Download the code from main branch
