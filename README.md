@@ -52,8 +52,11 @@
 
 ### Main Page
 
-![image](https://user-images.githubusercontent.com/54897058/161130697-57b052ee-0703-443c-a082-87403601244d.png)
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/contact.PNG)
 
+### Change nickname
+
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/change_nickname.PNG)
 
 ### Add Friend
 
@@ -61,20 +64,20 @@
 
 ### Private Chat
 
-![image](https://user-images.githubusercontent.com/54897058/161130997-610d46bf-2454-4530-b015-230d174e6e09.png)
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/chat.PNG)
 
 ### Create New Group
 
-![image](https://user-images.githubusercontent.com/54897058/161131288-211a3d29-2cc0-473c-9389-bf1f79d7442c.png)
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/create_grp.PNG)
 
 ### Join Group
 
-![image](https://user-images.githubusercontent.com/54897058/161131371-751b7e8c-8d58-4f77-857c-89b2f5c507f4.png)
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/join_grp.PNG)
 
 
 ### Group Chat
 
-![image](https://user-images.githubusercontent.com/54897058/161131657-97404d18-b5fc-4bd9-b6fc-d45a8274745f.png)
+![image](https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/screenshots/group_chat.PNG)
 
 ## Back End Log
 
