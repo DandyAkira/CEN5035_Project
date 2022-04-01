@@ -18,7 +18,7 @@ test('sub 1 - 2 to equal -1', () => {
     expect(sub(1, 2)).toBe(-1);
 });
 // Some fuctions from mui.js
-var getDirection = function(x, y) {
+var getDirection = function (x, y) {
     if (x === y) {
         return '';
     }
@@ -27,7 +27,7 @@ var getDirection = function(x, y) {
     }
     return y > 0 ? 'up' : 'down';
 };
-var getDistance = function(p1, p2, props) {
+var getDistance = function (p1, p2, props) {
     if (!props) {
         props = ['x', 'y'];
     }
@@ -36,7 +36,7 @@ var getDistance = function(p1, p2, props) {
     return sqrt((x * x) + (y * y));
 };
 
-var getAngle = function(p1, p2, props) {
+var getAngle = function (p1, p2, props) {
     if (!props) {
         props = ['x', 'y'];
     }
@@ -49,7 +49,7 @@ var getAngle = function(p1, p2, props) {
  * @param {Object} starts
  * @param {Object} moves
  */
-var getScale = function(starts, moves) {
+var getScale = function (starts, moves) {
     if (starts.length >= 2 && moves.length >= 2) {
         var props = ['pageX', 'pageY'];
         return getDistance(moves[1], moves[0], props) / getDistance(starts[1], starts[0], props);
@@ -61,7 +61,7 @@ var getScale = function(starts, moves) {
  * @param {Object} start
  * @param {Object} end
  */
-var getRotation = function(start, end) {
+var getRotation = function (start, end) {
     var props = ['pageX', 'pageY'];
     return getAngle(end[1], end[0], props) - getAngle(start[1], start[0], props);
 };
