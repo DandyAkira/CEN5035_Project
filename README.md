@@ -21,12 +21,14 @@
 - [x] Change Nick Name
 - [x] Change Avatar
 
-## Possible Future Functions
+### Possible Future Functions
 
 - [x] Send Video
 - [ ] Voice Chat
 
-## The preparatory work
+## How to Run
+
+### The preparatory work
 
 1. Download the code from main branch
 2. create a new database called "gatorchat" in MySQL by using `CREATE DATABASE gatorchat`
