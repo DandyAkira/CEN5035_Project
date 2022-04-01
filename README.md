@@ -74,7 +74,6 @@
 
 ![image](https://user-images.githubusercontent.com/54897058/161131657-97404d18-b5fc-4bd9-b6fc-d45a8274745f.png)
 
-<<<<<<< HEAD
 ## Back End Log
 
 ### Update (March 30 2022)
