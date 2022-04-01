@@ -5,18 +5,15 @@
     </header>
     <ul class="mui-table-view mui-table-view-chevron">
         <li class="mui-table-view-cell mui-media">
-            <a href="update.shtml" class="mui-navigate-right" >
-                <img class="mui-media-object mui-pull-left head-img" id="head-img" :src="profile.avatar ||'/asset/images/avatar0.png'">
-                <div class="mui-media-body">
-                    <span v-text="profile.nickname">betatech</span>
-                    <p class='mui-ellipsis' v-text="profile.memo">Hi Gator</p>
-                </div>
-            </a>
+            <img class="mui-media-object mui-pull-left head-img" id="head-img" :src="profile.avatar ||'/asset/images/gator.png'">
+            <div class="mui-media-body">
+                <span v-text="profile.nickname">betatech</span>
+            </div>
         </li>
     </ul>
     <ul class="mui-table-view">
         <li @click="addfriend" class="mui-table-view-cell">
-            <a class="mui-navigate-right" name="btn_addF">
+            <a class="mui-navigate-right">
                 Add Friend
             </a>
         </li>
@@ -28,6 +25,11 @@
         <li  class="mui-table-view-cell">
             <a class="mui-navigate-right" href="createcom.shtml">
                 New Group
+            </a>
+        </li>
+        <li @click="changename" class="mui-table-view-cell">
+            <a class="mui-navigate-right">
+                Change Nickname
             </a>
         </li>
     </ul>

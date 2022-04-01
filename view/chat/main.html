@@ -13,7 +13,7 @@
                 <li class="chat " :class="item.ismine?'mine':'other'" v-for="item in msglist"
                     v-if="item.msg.cmd==msgcontext.cmd && (( item.msg.cmd==10 &&  (item.ismine ? item.msg.dstid === msgcontext.dstid : item.msg.userid === msgcontext.dstid )) || ( item.msg.cmd === 11 && (item.msg.dstid === msgcontext.dstid)))">
                     <div>
-                        <img class="avatar" :src="item.user.avatar ||'/asset/images/avatar0.png'"/>
+                        <img class="avatar" :src="item.user.avatar ||'/asset/images/gator.png'"/>
                     </div>
                     <span></span>
                     <div class="content">

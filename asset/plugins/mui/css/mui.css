@@ -1235,8 +1235,8 @@ input[type='submit'],
 .mui-btn-blue
 {
     color: #fff;
-    border: 1px solid #007aff;
-    background-color: #007aff;
+    border: 1px solid #00529b;
+    background-color: #00529b;
 }
 input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 .mui-btn-primary:enabled:active,
@@ -1245,8 +1245,8 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 .mui-btn-blue.mui-active:enabled
 {
     color: #fff;
-    border: 1px solid #0062cc;
-    background-color: #0062cc;
+    border: 1px solid #00529b;
+    background-color: #00529b;
 }
 
 .mui-btn-positive,
@@ -1479,6 +1479,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 
     border-bottom: 0;
     background-color: #f7f7f7;
+    /*background-color: #E3F1FE;*/
     -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .85);
             box-shadow: 0 0 1px rgba(0, 0, 0, .85);
 
@@ -1498,6 +1499,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
     margin: 0;
 
     text-overflow: ellipsis;
+    color: write;
 }
 .mui-bar .mui-backdrop
 {
@@ -1546,6 +1548,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 
     -webkit-box-shadow: 0 1px 6px #ccc;
             box-shadow: 0 1px 6px #ccc;
+    background-color: #fb6502;
 }
 .mui-bar-nav ~ .mui-content .mui-anchor
 {
@@ -1565,8 +1568,8 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 
 .mui-title
 {
-    font-size: 17px;
-    font-weight: 500;
+    font-size: 25px;
+    font-weight: 700;
     line-height: 44px;
 
     position: absolute;
@@ -1580,7 +1583,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
     text-align: center;
     white-space: nowrap;
 
-    color: #000;
+    color: #ffffff;
 }
 
 .mui-title a
@@ -1622,7 +1625,7 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 }
 .mui-bar-tab .mui-tab-item.mui-active
 {
-    color: #007aff;
+    color: #00529b;
 }
 .mui-bar-tab .mui-tab-item .mui-icon
 {
@@ -1646,6 +1649,15 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 {
     background: none;
 }
+
+.mui-bar-tab .mui-tab-item .mui-icon:hover{
+    background: none;
+    color: #00529b;
+}
+
+
+
+
 
 .mui-focusin > .mui-bar-nav,
 .mui-focusin > .mui-bar-header-secondary
