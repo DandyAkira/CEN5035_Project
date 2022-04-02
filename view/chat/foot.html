@@ -325,7 +325,7 @@
                     },
                     joincomunity: function () {
                         var that = this;
-                        mui.prompt('', 'Input Group ID', 'Join Group', ['cancel', 'confirm'], function (e) {
+                        mui.prompt('', 'Input Group ID', 'Join Group', ['Cancel', 'Confirm'], function (e) {
                             if (e.index === 1) {
                                 if (isNaN(e.value) || e.value <= 0) {
                                     mui.toast('Illegal Input');

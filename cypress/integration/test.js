@@ -49,7 +49,7 @@ describe('Login/Logout', () => {
   })
 })
 
-describe('Add friend', () => {
+describe('Add friend/Create group', () => {
   it('Register friend', () => {    
     cy.visit('127.0.0.1')
 
@@ -64,7 +64,7 @@ describe('Add friend', () => {
       .type('titi')
     cy.contains('Register').click()
   })
-  it('Add friend', () => {
+  it('Add friend/Create group', () => {
     //login
     cy.visit('127.0.0.1')
     cy.get('input[name=form_email]')
@@ -76,14 +76,54 @@ describe('Add friend', () => {
     cy.get('span[name=btn_profile]').click()
     cy.get('a[name=btn_addF]').click()
 
-    /*cy.get('input[placeholder=Input Friends ID]')
-      .type('2')*/
+    /*cy.get("input[placeholder=Input Friend's Email]")
+      .type('titi@gmail.com')*/
 
     //handling prompt alert
     cy.window().then(($win) => {
         //stubbing prompt window
         //cy.stub($win, "prompt").returns("1");
         cy.contains('Cancel').click()
-    });
+      }
+    );
+
+
+
+    //create group
+    cy.get('a[name=btn_newG]').click({force: true})
+    cy.get('input[name=input_GN]')
+      .type('Test group')
+    cy.contains('Confirm').click()
+    /*cy.on('window:alert', (text) => {
+      expect(text).to.contains('Create New Group Success');
+    });*/
+    cy.url().should('include', '/chat/index.shtml')
+  })
+})
+
+describe('Join group', () => {
+  it('Join group', () => {
+    //login
+    cy.visit('127.0.0.1')
+    cy.get('input[name=form_email]')
+      .type('{selectall}{backspace}titi@gmail.com')
+    cy.get('input[name=form_pwd]')
+      .type('{selectall}{backspace}titi')
+
+    cy.contains('Login').click()    
+
+    //join group
+    cy.get('span[name=btn_profile]').click()
+    cy.get('a[name=btn_joinG]').click()
+
+    /*cy.get('input[placeholder=Input Group ID]')
+      .type('1')*/
+    //handling prompt alert
+    cy.window().then(($win) => {
+        //stubbing prompt window
+        //cy.stub($win, "prompt").returns("1");
+        cy.contains('Cancel').click()
+      }
+    )
   })
 })
