@@ -26,7 +26,7 @@
 - [x] Send Video
 - [ ] Voice Chat
 
-## How to Run
+## How to run the app?
 
 ### The preparatory work
 
@@ -37,7 +37,11 @@
 
 ### Run Program
 
-1. run main.go
+1. run the app by typing
+```
+go run main.go
+```
+
 2. open a browser and jump to http://127.0.0.1 then have fun :)
 
 ## Screenshots for the program

@@ -9,7 +9,9 @@
         <div id="convo" data-from="Sonu Joshi">
 
             <ul class="chat-thread">
-                <!--单聊且是他发的item.userid=msgcontext.dstid && 发给我的 item.dstid=myid 或者是我item.userid= myid发的,&&发给他的item.dstid= msgcontext.dstid 我发给他的  -->
+                <!--chat with a friend & msg is sent by him: item.userid=msgcontext.dstid 
+                                    && sent to me: item.dstid=myid 
+                                or it's me "item.userid= myid" send to him:"item.dstid= msgcontext.dstid"   -->
                 <li class="chat " :class="item.ismine?'mine':'other'" v-for="item in msglist"
                     v-if="item.msg.cmd==msgcontext.cmd && (( item.msg.cmd==10 &&  (item.ismine ? item.msg.dstid === msgcontext.dstid : item.msg.userid === msgcontext.dstid )) || ( item.msg.cmd === 11 && (item.msg.dstid === msgcontext.dstid)))">
                     <div>

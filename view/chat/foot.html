@@ -62,11 +62,11 @@
                             slot: "<input accept=\"image/*\" capture=\"camera\" type=\"file\" onchange=\"upload(this)\" class='upload' />"
                         },
                         */
-                        // {
-                        //     icon: "/asset/images/audiocall.png",
-                        //     name: "语音",
-                        //     id: "audiocall"
-                        // },
+                        /*{
+                            icon: "/asset/images/audiocall.png",
+                            name: "语音",
+                            id: "audiocall"
+                        },*/
                     ],
                     timer: 0,
                     recorder: {},
@@ -325,7 +325,7 @@
                     },
                     joincomunity: function () {
                         var that = this;
-                        mui.prompt('', 'Input Group ID', 'Join Group', ['cancel', 'confirm'], function (e) {
+                        mui.prompt('', 'Input Group ID', 'Join Group', ['Cancel', 'Confirm'], function (e) {
                             if (e.index === 1) {
                                 if (isNaN(e.value) || e.value <= 0) {
                                     mui.toast('Illegal Input');
