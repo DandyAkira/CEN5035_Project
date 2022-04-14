@@ -8,7 +8,6 @@ import (
 	"GatorChat/utils"
 	"log"
 	"net/http"
-	"strconv"
 )
 
 var contactService service.ContactService
@@ -58,56 +57,56 @@ func CreateCommunity(w http.ResponseWriter, req *http.Request) {
 
 func JoinCommunity(w http.ResponseWriter, req *http.Request) {
 
-	req.ParseForm()
-	userId_str := req.PostForm.Get("userid")
-	userId, _ := strconv.ParseInt(userId_str, 10, 64)
-	dstid_str := req.PostForm.Get("dstid")
-	dstid, _ := strconv.ParseInt(dstid_str, 10, 64)
-	err := contactService.JoinCommunity(userId, dstid)
-	if err != nil {
-		global.ResponseFail(w, err.Error())
-	} else {
-		global.ResponseOk(w, nil, "Add Friend Success")
-	}
-
-	// var arg request.ContactArg
-	// if err := utils.Bind(req, &arg); err != nil {
-	// 	global.ResponseFail(w, err.Error())
-	// 	return
-	// }
-	// err := contactService.JoinCommunity(arg.Userid, arg.Dstid)
-	// AddGroupId(arg.Userid, arg.Dstid)
-	// if err != nil {
-	// 	global.ResponseFail(w, err.Error())
-	// } else {
-	// 	global.ResponseOk(w, nil, "")
-	// }
-}
-
-func AddFriend(w http.ResponseWriter, req *http.Request) {
-
-	req.ParseForm()
-	userId_str := req.PostForm.Get("userid")
-	userId, _ := strconv.ParseInt(userId_str, 10, 64)
-	dstemail := req.PostForm.Get("dstemail")
-	err := contactService.AddFriend(userId, dstemail)
-	if err != nil {
-		global.ResponseFail(w, err.Error())
-	} else {
-		global.ResponseOk(w, nil, "Add Friend Success")
-	}
-
-	//定义一个参数结构体
-	// var arg request.AddFriendReq
-	// if err := utils.Bind(req, &arg); err != nil {
-	// 	global.ResponseFail(w, err.Error())
-	// 	return
-	// }
-	// //调用service
-	// err := contactService.AddFriend(arg.Userid, arg.DstEmail)
+	// req.ParseForm()
+	// userId_str := req.PostForm.Get("userid")
+	// userId, _ := strconv.ParseInt(userId_str, 10, 64)
+	// dstid_str := req.PostForm.Get("dstid")
+	// dstid, _ := strconv.ParseInt(dstid_str, 10, 64)
+	// err := contactService.JoinCommunity(userId, dstid)
 	// if err != nil {
 	// 	global.ResponseFail(w, err.Error())
 	// } else {
 	// 	global.ResponseOk(w, nil, "Add Friend Success")
 	// }
+
+	var arg request.ContactArg
+	if err := utils.Bind(req, &arg); err != nil {
+		global.ResponseFail(w, err.Error())
+		return
+	}
+	err := contactService.JoinCommunity(arg.Userid, arg.Dstid)
+	AddGroupId(arg.Userid, arg.Dstid)
+	if err != nil {
+		global.ResponseFail(w, err.Error())
+	} else {
+		global.ResponseOk(w, nil, "")
+	}
+}
+
+func AddFriend(w http.ResponseWriter, req *http.Request) {
+
+	// req.ParseForm()
+	// userId_str := req.PostForm.Get("userid")
+	// userId, _ := strconv.ParseInt(userId_str, 10, 64)
+	// dstemail := req.PostForm.Get("dstemail")
+	// err := contactService.AddFriend(userId, dstemail)
+	// if err != nil {
+	// 	global.ResponseFail(w, err.Error())
+	// } else {
+	// 	global.ResponseOk(w, nil, "Add Friend Success")
+	// }
+
+	// 定义一个参数结构体
+	var arg request.AddFriendReq
+	if err := utils.Bind(req, &arg); err != nil {
+		global.ResponseFail(w, err.Error())
+		return
+	}
+	//调用service
+	err := contactService.AddFriend(arg.Userid, arg.DstEmail)
+	if err != nil {
+		global.ResponseFail(w, err.Error())
+	} else {
+		global.ResponseOk(w, nil, "Add Friend Success")
+	}
 }

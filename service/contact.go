@@ -4,6 +4,7 @@ import (
 	"GatorChat/database"
 	"GatorChat/model"
 	"errors"
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -16,11 +17,12 @@ type ContactService struct{}
 func (service ContactService) AddFriend(userid int64, dstemail string) error {
 
 	var dst_user model.User
+
 	if _, err := database.DB.Where("email = ?", dstemail).Get(&dst_user); err != nil || dst_user.Id == 0 {
 		log.Println(err.Error())
 		return errors.New("user not exists")
 	}
-
+	fmt.Println("Receive Add Friend Requst from", userid, " to ", dst_user.Id)
 	//如果加自己
 	if userid == dst_user.Id {
 		return errors.New("you can not add yourself as a friend")
@@ -124,6 +126,7 @@ func (service ContactService) JoinCommunity(userId, comId int64) error {
 		Cate:    model.CONCAT_CATE_COMUNITY,
 	}
 	_, _ = database.DB.Get(&cot)
+	fmt.Println("Receive Join Group Requst from", userId, " to ", cot.Id)
 	if cot.Id == 0 {
 		cot.Createat = time.Now()
 		_, err := database.DB.InsertOne(cot)
