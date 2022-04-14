@@ -8,6 +8,7 @@ import (
 	"GatorChat/utils"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 var contactService service.ContactService
@@ -72,20 +73,27 @@ func JoinCommunity(w http.ResponseWriter, req *http.Request) {
 
 func AddFriend(w http.ResponseWriter, req *http.Request) {
 	//定义一个参数结构体
-	/*request.ParseForm()
-	email := request.PostForm.Get("email")
-	passwd := request.PostForm.Get("passwd")
-	*/
-	var arg request.AddFriendReq
-	if err := utils.Bind(req, &arg); err != nil {
-		global.ResponseFail(w, err.Error())
-		return
-	}
-	//调用service
-	err := contactService.AddFriend(arg.Userid, arg.DstEmail)
+	req.ParseForm()
+	userId_str := req.PostForm.Get("userid")
+	userId, _ := strconv.ParseInt(userId_str, 10, 64)
+	dstemail := req.PostForm.Get("dstemail")
+	err := contactService.AddFriend(userId, dstemail)
 	if err != nil {
 		global.ResponseFail(w, err.Error())
 	} else {
 		global.ResponseOk(w, nil, "Add Friend Success")
 	}
+
+	// var arg request.AddFriendReq
+	// if err := utils.Bind(req, &arg); err != nil {
+	// 	global.ResponseFail(w, err.Error())
+	// 	return
+	// }
+	// //调用service
+	// err := contactService.AddFriend(arg.Userid, arg.DstEmail)
+	// if err != nil {
+	// 	global.ResponseFail(w, err.Error())
+	// } else {
+	// 	global.ResponseOk(w, nil, "Add Friend Success")
+	// }
 }
