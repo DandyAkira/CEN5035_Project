@@ -6,6 +6,10 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
+## API doc
+
+https://easydoc.net/s/88012132
+
 ## Back End Log
 
 ### Update (April 15 2022)
