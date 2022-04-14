@@ -6,10 +6,26 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
+## Back End Log
 ### Update (April 14 2022)
 
  - Add test cases for adding friends
  - Background HTTP request packet format optimization
+
+#### test adding friends
+the first 2 users are chosen to send add friend request to himself, all other users, and users who already is their friend.
+
+each of these 2 users should receive several response from server:
+```
+{"code":0,"msg":"Add Friend Success"}
+{"code":-1,"msg":"you can not add yourself as a friend"}
+{"code":-1,"msg":"this user is already your friend"}
+```
+and the server's terminal will show serveral info like:
+```
+Receive Add Friend Requset from: userid to dstid
+```
+The test results showed no errors.
 
 # Sprint 3
 
