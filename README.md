@@ -7,6 +7,10 @@
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
 ## Back End Log
+
+### Update (April 15 2022)
+ - The logic for background parsing of parameters in request messages has been optimized
+
 ### Update (April 14 2022)
 
  - Add test cases for adding friends
