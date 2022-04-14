@@ -22,6 +22,8 @@ https://easydoc.net/s/88012132
 
 #### test adding friends
 the first 2 users are chosen to send add friend request to himself, all other users, and users who already is their friend.
+![image](https://user-images.githubusercontent.com/54897058/163479578-550bdd9e-53cd-4bb5-814a-af467411fa7f.png)
+
 
 each of these 2 users should receive several response from server:
 ```
