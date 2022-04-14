@@ -6,6 +6,11 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
+### Update (April 14 2022)
+
+ - Add test cases for adding friends
+ - Background HTTP request packet format optimization
+
 # Sprint 3
 
 ## Functions
