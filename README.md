@@ -14,6 +14,9 @@ https://user-images.githubusercontent.com/54897058/163485616-75a87147-6d76-4c9a-
 
 https://easydoc.net/s/88012132
 
+## Project Board Link
+https://github.com/DandyAkira/CEN5035_Project/projects
+
 ## Back End Log
 
 ### Update (April 15 2022)
