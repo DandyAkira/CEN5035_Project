@@ -20,7 +20,7 @@ https://github.com/DandyAkira/CEN5035_Project/projects
 ## Back End Log
 
 ### Update (April 15 2022)
- - The logic for background parsing of parameters in request messages has been optimized
+ - The logic for background parsing of parameters in request messages has been optimized [see model/request/ and utils/parsearg.go]
 
 ### Update (April 14 2022)
 
