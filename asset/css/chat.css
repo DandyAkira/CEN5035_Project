@@ -38,7 +38,7 @@ body {
   height: 48px;
   font: 32px/48px 'Noto Sans', sans-serif;
   background: none;
-  color: #0AD5C1;
+  color: #0AD5C1;/*00529b;/*#0AD5C1;*/
   border: 0;
   border-bottom: 1px solid rgba(25, 147, 147, 0.2);
   outline: none;

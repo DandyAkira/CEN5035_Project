@@ -108,7 +108,7 @@
                             }
                         }
                         if (!suporttype) {
-                            mui.toast("编码不支持")
+                            mui.toast("Unsupported encoding")
                             return;
                         }
                         this.duration = new Date().getTime();
@@ -140,7 +140,7 @@
                             case "camera":
                                 break;
                             default:
-                                mui.toast("系统暂不支持,请自行扩展")
+                                mui.toast("Not supported for now")
                         }
                     },
                     reset: function () {
