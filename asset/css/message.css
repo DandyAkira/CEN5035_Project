@@ -1,0 +1,68 @@
+.chat.mine span {
+    border: 10px solid;
+    border-top-color: transparent;
+    border-top-style: solid;
+    border-top-width: 10px;
+    border-right-color: transparent;
+    border-right-style: solid;
+    border-right-width: 10px;
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-left-color: #00529b;/*rgb(50, 205, 50);*/
+    border-left-style: solid;
+    border-left-width: 10px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-color: transparent transparent transparent #00529b;/*#32CD32;*/
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: #00529b;/*rgb(50, 205, 50);*/
+    margin-top: 10px;
+}
+
+.chat.mine>.content {
+    background-color: #00529b;/*#32CD32;*/
+    color: white;
+}
+
+
+
+
+
+
+.chat.other span {
+    border: 10px solid;
+    border-top-color: transparent;
+    border-top-style: solid;
+    border-top-width: 10px;
+    border-right-color: #fb6502;/*rgb(255, 255, 255);*/
+    border-right-style: solid;
+    border-right-width: 10px;
+    border-bottom-color: transparent;
+    border-bottom-style: solid;
+    border-bottom-width: 10px;
+    border-left-color: transparent;
+    border-left-style: solid;
+    border-left-width: 10px;
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    border-color: transparent #fb6502/*#FFFFFF*/ transparent transparent;
+    border-top-color: transparent;
+    border-right-color: #fb6502;/*rgb(255, 255, 255);*/
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    margin-top: 10px;
+}
+
+.chat.other>.content {
+    background-color: #fb6502;/*#FFFFFF;*/
+    color: white;
+}
