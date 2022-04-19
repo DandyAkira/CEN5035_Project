@@ -127,7 +127,7 @@ Core.prototype.post = function(uri, data, fn) {
             }
         };
         xhr.onerror = function() {
-            reject({ "code": -1, "msg": "服务器繁忙" })
+            reject({ "code": -1, "msg": "Server is busy now" })
         }
         var _data = [];
         for (var i in data) {
