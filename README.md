@@ -1,10 +1,30 @@
-# Team members
+# Sprint 4
+
+## Team members
 |  NAME   | GITHUB NAME  | EMAIL | DUTY |
 |  :----:  | :----:  | :----:  | :----:  |
 | Ruoyang Xiong  | KalmanXiong | xiongruoyang@ufl.edu | Front-End |
 | Yandi Ma  | DandyAkira | yandi.ma@ufl.edu | Back-End |
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
+
+## Cypress Test
+
+### How to run the test?
+
+- run Gatorchat
+```
+go run main.go
+```
+- execute the following command to open Cypress
+```
+yarn run cypress open
+```
+- click on the test file (test.js) to start the test
+
+### Demo
+
+https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/demo/Sprint4-Cypress.mp4
 
 ## Unit Test Demo
 
