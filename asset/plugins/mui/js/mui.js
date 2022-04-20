@@ -2871,7 +2871,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
                             //首次按键，提示‘再按一次退出应用’
                             if (!$.__back__first) {
                                 $.__back__first = new Date().getTime();
-                                mui.toast('再按一次退出应用');
+                                mui.toast('Press another time to close the app');
                                 setTimeout(function() {
                                     $.__back__first = null;
                                 }, 2000);
@@ -7249,7 +7249,7 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
                 if (typeof title === 'function') {
                     callback = title;
                     title = null;
-                    btnValue = '确定';
+                    btnValue = 'Ok';
                 } else if (typeof btnValue === 'function') {
                     callback = btnValue;
                     btnValue = null;
@@ -7551,9 +7551,9 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             }
         }
         if (!$.os.plus || type === 'div') {
-            return createPopup(createInner(message, title || '提示') + createButtons([btnValue || '确定']), callback);
+            return createPopup(createInner(message, title || 'Tips') + createButtons([btnValue || 'Ok']), callback);
         }
-        return plus.nativeUI.alert(message, callback, title || '提示', btnValue || '确定');
+        return plus.nativeUI.alert(message, callback, title || 'Tips', btnValue || 'Ok');
     };
     var createConfirm = function(message, title, btnArray, callback, type) {
         if (typeof message === 'undefined') {
@@ -7571,9 +7571,9 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             }
         }
         if (!$.os.plus || type === 'div') {
-            return createPopup(createInner(message, title || '提示') + createButtons(btnArray || ['取消', '确认']), callback);
+            return createPopup(createInner(message, title || 'Tips') + createButtons(btnArray || ['Cancel', 'Confirm']), callback);
         }
-        return plus.nativeUI.confirm(message, callback, title, btnArray || ['取消', '确认']);
+        return plus.nativeUI.confirm(message, callback, title, btnArray || ['Cancel', 'Confirm']);
     };
     var createPrompt = function(message, placeholder, title, btnArray, callback, type) {
         if (typeof message === 'undefined') {
@@ -7597,9 +7597,9 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             }
         }
         if (!$.os.plus || type === 'div') {
-            return createPopup(createInner(message, title || '提示', createInput(placeholder)) + createButtons(btnArray || ['取消', '确认']), callback);
+            return createPopup(createInner(message, title || 'Tips', createInput(placeholder)) + createButtons(btnArray || ['Cancel', 'Confirm']), callback);
         }
-        return plus.nativeUI.prompt(message, callback, title || '提示', placeholder, btnArray || ['取消', '确认']);
+        return plus.nativeUI.prompt(message, callback, title || 'Tips', placeholder, btnArray || ['Cancel', 'Confirm']);
     };
     var closePopup = function() {
         if (popupStack.length) {

@@ -1,33 +1,33 @@
 {{define "/chat/head.shtml"}}
 <script>
-    function userId(id){
-        if(typeof  id =="undefined"){
+    function userId(id) {
+        if (typeof id == "undefined") {
             var r = sessionStorage.getItem("userid");
-            if(!r){
+            if (!r) {
                 return 0;
-            }else{
+            } else {
                 return parseInt(r)
             }
-        }else{
-            sessionStorage.setItem("userid",id);
+        } else {
+            sessionStorage.setItem("userid", id);
         }
     }
-    function userInfo(o){
-        if(typeof  o =="undefined"){
+    function userInfo(o) {
+        if (typeof o == "undefined") {
             var r = sessionStorage.getItem("userinfo");
-            if(!!r){
+            if (!!r) {
                 return JSON.parse(r);
-            }else{
+            } else {
                 return null
             }
-        }else{
-            sessionStorage.setItem("userinfo",JSON.stringify(o));
+        } else {
+            sessionStorage.setItem("userinfo", JSON.stringify(o));
         }
     }
     var url = location.href;
-    var isOpen = url.indexOf("/login")>-1 || url.indexOf("/register")>-1
-    if (!userId() && !isOpen){
-      // location.href = "login.shtml";
+    var isOpen = url.indexOf("/login") > -1 || url.indexOf("/register") > -1
+    if (!userId() && !isOpen) {
+        // location.href = "login.shtml";
     }
 
 </script>
@@ -39,143 +39,158 @@
 <link rel="icon" href="/asset/images/logo.png" type="image/icon type">
 <link rel="stylesheet" href="/asset/plugins/mui/css/mui.css" />
 <link rel="stylesheet" href="/asset/css/chat.css" />
-<link rel="stylesheet" href="/asset/css/message.css"/>
+<link rel="stylesheet" href="/asset/css/message.css" />
 
-<script src="/asset/plugins/mui/js/mui.js" ></script>
-<script src="/asset/js/vue.min.js" ></script>
-<script src="/asset/js/util.js" ></script>
+<script src="/asset/plugins/mui/js/mui.js"></script>
+<script src="/asset/js/vue.min.js"></script>
+<script src="/asset/js/util.js"></script>
 <script>
-   function post(uri,data,fn){
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST","//"+location.host+"/"+uri, true);
-                // add http request header
-                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
-                        fn.call(this, JSON.parse(xhr.responseText));
-                    }
-                };
-                var _data=[];
-                if(!! userId()){
-                   // data["userid"] = userId();
-                }
-                for(var i in data){
-                    _data.push( i +"=" + encodeURI(data[i]));
-                }
-                xhr.send(_data.join("&"));
+    function post(uri, data, fn) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "//" + location.host + "/" + uri, true);
+        // add http request header
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
+                fn.call(this, JSON.parse(xhr.responseText));
             }
-            function uploadfile(uri,dom,fn){
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST","//"+location.host+"/"+uri, true);
-                // add http request header
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
-                        fn.call(this, JSON.parse(xhr.responseText));
-                    }
-                };
-                var _data=[];
-                var formdata = new FormData();
-                if(!! userId()){
-                    formdata.append("userid",userId());
-                }
-                formdata.append("file",dom.files[0])
-                xhr.send(formdata);
+        };
+        var _data = [];
+        if (!!userId()) {
+            // data["userid"] = userId();
+        }
+        for (var i in data) {
+            _data.push(i + "=" + encodeURI(data[i]));
+        }
+        xhr.send(_data.join("&"));
+    }
+    function uploadfile(uri, dom, fn) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "//" + location.host + "/" + uri, true);
+        // add http request header
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
+                fn.call(this, JSON.parse(xhr.responseText));
             }
-            function uploadblob(uri,blob,fn){
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST","//"+location.host+"/"+uri, true);
-                // add http request header
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
-                        fn.call(this, JSON.parse(xhr.responseText));
-                    }
-                };
-                var _data=[];
-                var formdata = new FormData();
-                formdata.append("filetype",".mp3");
-                if(!! userId()){
-                    formdata.append("userid",userId());
-                }
-                formdata.append("file",blob)
-                xhr.send(formdata);
-   }
+        };
+        var _data = [];
+        var formdata = new FormData();
+        if (!!userId()) {
+            formdata.append("userid", userId());
+        }
+        formdata.append("file", dom.files[0])
+        xhr.send(formdata);
+    }
+    function uploadblob(uri, blob, fn) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "//" + location.host + "/" + uri, true);
+        // add http request header
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
+                fn.call(this, JSON.parse(xhr.responseText));
+            }
+        };
+        var _data = [];
+        var formdata = new FormData();
+        formdata.append("filetype", ".mp3");
+        if (!!userId()) {
+            formdata.append("userid", userId());
+        }
+        formdata.append("file", blob)
+        xhr.send(formdata);
+    }
 </script>
 
 <style>
-    .flex-container{
-        display:flex;
-        flex-direction:row;
-        width:100%;
+    .flex-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
         padding-top: 10px;
         position: fixed;
         bottom: 0px;
         background-color: #FFFFFF;
     }
-    .item-1{
-        height:50px;
-        height:50px;
+
+    .item-1 {
+        height: 50px;
+        height: 50px;
         padding: 5px 5px 5px 5px;
     }
-    .item-2{
-                margin-right:auto;
-        height:50px;
+
+    .item-2 {
+        margin-right: auto;
+        height: 50px;
         width: 100%;
     }
-    .txt{
-        margin-right:auto;
+
+    .txt {
+        margin-right: auto;
     }
-    .item-3{
-        height:50px;
-        height:50px;
-        padding: 5px 5px 5px 5px;
-    }
-    .item-4{
-        height:50px;
-        height:50px;
+
+    .item-3 {
+        height: 50px;
+        height: 50px;
         padding: 5px 5px 5px 5px;
     }
 
-     li.chat{
-         justify-content: flex-start;
-         align-items: flex-start;
-         display: flex;
+    .item-4 {
+        height: 50px;
+        height: 50px;
+        padding: 5px 5px 5px 5px;
+    }
 
-     }
-     .chat.other{
-         flex-direction: row;
-     }
-    .chat.mine{
+    li.chat {
+        justify-content: flex-start;
+        align-items: flex-start;
+        display: flex;
+
+    }
+
+    .chat.other {
+        flex-direction: row;
+    }
+
+    .chat.mine {
         flex-direction: row-reverse;
     }
-    img.avatar{
+
+    img.avatar {
         width: 64px;
-        height:64px;
+        height: 64px;
     }
-    .other .avatar{
-        margin-left:10px;
+
+    .other .avatar {
+        margin-left: 10px;
     }
-    .mine .avatar{
-        margin-right:10px;
+
+    .mine .avatar {
+        margin-right: 10px;
     }
-    .other span{
+
+    .other span {
         border: 10px solid;
-        border-color: transparent #FFFFFF transparent transparent ;
+        border-color: transparent #FFFFFF transparent transparent;
         margin-top: 10px;
     }
-    .mine span{
+
+    .mine span {
         border: 10px solid;
-        border-color: transparent  transparent transparent #32CD32;
+        border-color: transparent transparent transparent #32CD32;
         margin-top: 10px;
     }
-    .other>.content{
+
+    .other>.content {
         background-color: #FFFFFF;
 
     }
-    .mine>.content{
+
+    .mine>.content {
         background-color: #32CD32;
 
     }
-    div.content{
+
+    div.content {
         min-width: 60px;
         clear: both;
         display: inline-block;
@@ -186,82 +201,98 @@
 
         min-height: 64px;
     }
-    .content>img.pic{
+
+    .content>img.pic {
         width: 100%;
-        margin:3px 3px 3px 3px;
+        margin: 3px 3px 3px 3px;
     }
-    .content>img.audio{
+
+    .content>img.audio {
         width: 32px;
         color: white;
     }
-    #panels{
+
+    #panels {
         background-color: #FFFFFF;
         display: flex;
         position: fixed;
         bottom: 50px;
     }
-    .doutures{
+
+    .doutures {
         flex-direction: row;
         flex-wrap: wrap;
         display: flex;
     }
-    .doutures img{
+
+    .doutures img {
         margin: 10px 10px 10px 10px;
     }
-    .doutupkg{
+
+    .doutupkg {
         flex-direction: row;
         flex-wrap: wrap;
         display: flex;
     }
-    .plugins{
+
+    .plugins {
         flex-direction: row;
         flex-wrap: wrap;
         display: flex;
     }
-    .plugin{
+
+    .plugin {
         padding: 10px 10px 10px 20px;
         margin-left: 10px;
         margin-right: 10px;
     }
-    .plugin img{
+
+    .plugin img {
         width: 40px;
     }
-    .plugin p{
+
+    .plugin p {
         text-align: center;
         font-size: 16px;
     }
-    .doutupkg img{
+
+    .doutupkg img {
         width: 32px;
         height: 32px;
         margin: 5px 5px 5px 5px;
     }
-    .upload{
+
+    .upload {
         width: 64px;
         height: 64px;
         position: absolute;
         top: 1px;
-        opacity:0;
+        opacity: 0;
     }
-    .tagicon{
+
+    .tagicon {
         width: 32px;
-        height:32px;
+        height: 32px;
     }
-    
-    .small{
+
+    .small {
         width: 32px;
-        height:32px;
+        height: 32px;
     }
-    .middle{
+
+    .middle {
         width: 64px;
-        height:64px;
+        height: 64px;
     }
-    .large{
+
+    .large {
         width: 96px;
-        height:96px;
+        height: 96px;
     }
-    .res image{
+
+    .res image {
         width: 32px;
-        height:32px;
+        height: 32px;
     }
 </style>
 {{end}}
