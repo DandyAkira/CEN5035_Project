@@ -24,7 +24,7 @@ yarn run cypress open
 
 ### Demo
 
-https://github.com/DandyAkira/CEN5035_Project/blob/back_develop/demo/Sprint4-Cypress.mp4
+https://user-images.githubusercontent.com/47899013/164157706-8aa5cae3-bc3d-491e-976b-4aabebcd7bde.mp4
 
 ## Unit Test Demo
 
