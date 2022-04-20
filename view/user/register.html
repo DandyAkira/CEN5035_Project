@@ -64,7 +64,7 @@
         },
         methods: {
             userRegister() {
-                if (this.user.nickname == '' || this.user.password == '' || this.user.email == '') return mui.alert("Can not be blank")
+                if (this.user.nickname == '' || this.user.password == '' || this.user.email == '') return mui.alert("Cannot be blank")
                 util.post("register", this.user).then(res => {
                     if (res.code != 0) {
                         mui.toast(res.msg)
