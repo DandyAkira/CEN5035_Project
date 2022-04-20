@@ -1,26 +1,29 @@
 {{define "/chat/index.shtml"}}
 <!DOCTYPE html>
 <html>
+
 <head>
-<!--js include-->
-{{template "/chat/head.shtml"}}
+    <!--js include-->
+    {{template "/chat/head.shtml"}}
 </head>
+
 <body>
-<header class="mui-bar mui-bar-nav">
-</header>
-<div class="mui-content" id="pageapp">
-    <!--contacts-->
-    {{template "/chat/concat.shtml"}}
-    <!--group chat-->
-    {{template "/chat/group.shtml"}}
-    <!--self profile-->
-    {{template "/chat/profile.shtml"}}
-    <!--the main page of chat-->
-    {{template "/chat/main.shtml"}}
-    <!--the foot menu-->
-    {{template "/chat/tabmenu.shtml"}}
-</div>
+    <header class="mui-bar mui-bar-nav">
+    </header>
+    <div class="mui-content" id="pageapp">
+        <!--contacts-->
+        {{template "/chat/concat.shtml"}}
+        <!--group chat-->
+        {{template "/chat/group.shtml"}}
+        <!--self profile-->
+        {{template "/chat/profile.shtml"}}
+        <!--the main page of chat-->
+        {{template "/chat/main.shtml"}}
+        <!--the foot menu-->
+        {{template "/chat/tabmenu.shtml"}}
+    </div>
 </body>
+
 </html>
 {{template "/chat/foot.shtml"}}
 {{end}}
