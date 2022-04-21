@@ -1,43 +1,44 @@
 {{define "/chat/createcom.shtml"}}
-    <!DOCTYPE html>
-    <html>
-    <head>
-        {{template "/chat/head.shtml"}}
-        <style>
-            .area {
-                margin: 20px auto 0px auto;
-            }
+<!DOCTYPE html>
+<html>
 
-            .mui-input-group:first-child {
-                margin-top: 20px;
-            }
+<head>
+    {{template "/chat/head.shtml"}}
+    <style>
+        .area {
+            margin: 20px auto 0px auto;
+        }
 
-            .mui-input-group label {
-                width: 24%;
-            }
+        .mui-input-group:first-child {
+            margin-top: 20px;
+        }
 
-            .mui-input-row label ~ input,
-            .mui-input-row label ~ select,
-            .mui-input-row label ~ textarea {
-                width: 76%;
-            }
+        .mui-input-group label {
+            width: 24%;
+        }
 
-            .mui-checkbox input[type=checkbox],
-            .mui-radio input[type=radio] {
-                top: 6px;
-            }
+        .mui-input-row label~input,
+        .mui-input-row label~select,
+        .mui-input-row label~textarea {
+            width: 76%;
+        }
 
-            .mui-content-padded {
-                margin-top: 25px;
-            }
+        .mui-checkbox input[type=checkbox],
+        .mui-radio input[type=radio] {
+            top: 6px;
+        }
 
-            .mui-btn {
-                padding: 10px;
-            }
+        .mui-content-padded {
+            margin-top: 25px;
+        }
 
-        </style>
-    </head>
-    <body>
+        .mui-btn {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
     <header class="mui-bar mui-bar-nav">
         <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
         <h1 class="mui-title">New Group</h1>
@@ -47,14 +48,15 @@
             <li class="mui-table-view-cell mui-media">
                 <a class="mui-navigate-right">
                     <input style="width: 100%;height: 48px;position: absolute;opacity:0;" onchange="uploadthis(this)"
-                           accept="image/png,image/jpeg" type="file" class="mui-input-clear mui-input"
-                           placeholder="Input Group Name">
+                        accept="image/png,image/jpeg" type="file" class="mui-input-clear mui-input"
+                        placeholder="Input Group Name">
 
                     <img id="head-img" :src="com.icon" style="border-radius:50%;"
-                         class="mui-media-object mui-pull-right head-img">
+                        class="mui-media-object mui-pull-right head-img">
                     <div class="mui-media-body">
                         Icon
-                        <p class="mui-ellipsis">click the botton to upload an icon</p></div>
+                        <p class="mui-ellipsis">click the botton to upload an icon</p>
+                    </div>
                 </a>
             </li>
         </ul>
@@ -63,7 +65,7 @@
             <div class="mui-input-row">
                 <label>Name</label>
                 <input v-model="com.name" id='mobile' name="input_GN" type="text" class="mui-input-clear mui-input"
-                       placeholder="Input Group Name">
+                    placeholder="Input Group Name">
             </div>
         </div>
         <div class="mui-content-padded">
@@ -71,67 +73,68 @@
         </div>
 
     </div>
-    </body>
-    </html>
-    <script>
-        function uploadthis(dom) {
-            var data = new FormData();
+</body>
 
-            for (let file of dom.files) {
-                data.append('file', file);
-            }
+</html>
+<script>
+    function uploadthis(dom) {
+        var data = new FormData();
 
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-
-                    var res = JSON.parse(xhr.responseText);
-                    if (res.code != 0) {
-                        mui.toast(res.msg)
-                    } else {
-                        app.com.icon = res.data;
-                        mui.toast("Upload Success")
-                    }
-
-                }
-            };
-            xhr.open('POST', '/attach/upload');
-            xhr.send(data)
+        for (let file of dom.files) {
+            data.append('file', file);
         }
 
-        var app = new Vue(
-            {
-                el: "#pageapp",
-                data: {
-                    com: {
-                        name: "",
-                        cate: 0,
-                        memo: "",
-                        icon: "/asset/images/community.png",
-                        ownerid: 0
-                    },
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
 
-                },
-                created: function () {
-                    this.com.ownerid = userId();
-                },
-                methods: {
-                    createcommunity: function () {
-                        if (!this.com.name) {
-                            mui.toast("Input the Name");
-                            return
-                        }
-                        post("contact/createcommunity", this.com, function (res) {
-                            if (res.code == 0) {
-                                window.alert("Create New Group Success")
-                                window.history.back();
-                            } else {
-                                mui.toast(res.msg);
-                            }
-                        })
-                    },
+                var res = JSON.parse(xhr.responseText);
+                if (res.code != 0) {
+                    mui.toast(res.msg)
+                } else {
+                    app.com.icon = res.data;
+                    mui.toast("Upload Success")
                 }
+
             }
-        )
-    </script>
+        };
+        xhr.open('POST', '/attach/upload');
+        xhr.send(data)
+    }
+
+    var app = new Vue(
+        {
+            el: "#pageapp",
+            data: {
+                com: {
+                    name: "",
+                    cate: 0,
+                    memo: "",
+                    icon: "/asset/images/community.png",
+                    ownerid: 0
+                },
+
+            },
+            created: function () {
+                this.com.ownerid = userId();
+            },
+            methods: {
+                createcommunity: function () {
+                    if (!this.com.name) {
+                        mui.toast("Input the Name");
+                        return
+                    }
+                    post("contact/createcommunity", this.com, function (res) {
+                        if (res.code == 0) {
+                            window.alert("Create New Group Success")
+                            window.history.back();
+                        } else {
+                            mui.toast(res.msg);
+                        }
+                    })
+                },
+            }
+        }
+    )
+</script>
 {{end}}

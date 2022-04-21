@@ -64,7 +64,7 @@ body {
   -webkit-animation: show-chat-odd 0.15s 1 ease-in;
   float: right;
   margin-right: 80px;
-  color: #0AD5C1;
+  color: #0AD5C1;/*00529b;*/
 }
 
 .chat-thread li.myself:before {

@@ -22,8 +22,8 @@ func Upload(w http.ResponseWriter, r *http.Request) {
 	//UploadOss(w, r)
 }
 
-//1.存储位置 ./mnt,需要确保已经创建好
-//2.url格式 /mnt/xxxx.png  需要确保网络能访问/mnt/
+//1.location ./mnt
+//2.url format /mnt/xxxx.png  make sure we get access to /mnt/
 func UploadLocal(writer http.ResponseWriter, request *http.Request) {
 	//todo 获得上传的源文件s
 	srcfile, head, err := request.FormFile("file")
@@ -69,7 +69,7 @@ func UploadLocal(writer http.ResponseWriter, request *http.Request) {
 	global.ResponseOk(writer, url, "")
 }
 
-//即将删掉,定期更新
+//need to delete
 const (
 	AccessKeyId     = "5p2RZKnrUanMuQw9"
 	AccessKeySecret = "bsNmjU8Au08axedV40TRPCS5XIFAkK"
@@ -77,8 +77,8 @@ const (
 	Bucket          = "winliondev"
 )
 
-//权限设置为公共读状态
-//需要安装
+//set the permission
+//need to install
 func UploadOss(writer http.ResponseWriter, request *http.Request) {
 	//todo 获得上传的文件
 	srcfile, head, err := request.FormFile("file")
@@ -90,37 +90,37 @@ func UploadOss(writer http.ResponseWriter, request *http.Request) {
 	//todo 获得文件后缀.png/.mp3
 
 	suffix := ".png"
-	//如果前端文件名称包含后缀 xx.xx.png
+	// xx.xx.png
 	ofilename := head.Filename
 	tmp := strings.Split(ofilename, ".")
 	if len(tmp) > 1 {
 		suffix = "." + tmp[len(tmp)-1]
 	}
-	//如果前端指定filetype
+	//filetype
 	//formdata.append("filetype",".png")
 	filetype := request.FormValue("filetype")
 	if len(filetype) > 0 {
 		suffix = filetype
 	}
 
-	//todo 初始化ossclient
+	//todo init ossclient
 	client, err := oss.New(EndPoint, AccessKeyId, AccessKeySecret)
 	if err != nil {
 		global.ResponseFail(writer, err.Error())
 		return
 	}
-	//todo 获得bucket
+	//todo get bucket
 	bucket, err := client.Bucket(Bucket)
 	if err != nil {
 		global.ResponseFail(writer, err.Error())
 		return
 	}
-	//todo 设置文件名称
+	//todo set the name of a file
 	//time.Now().Unix()
 	filename := fmt.Sprintf("mnt/%d%04d%s",
 		time.Now().Unix(), rand.Int31(),
 		suffix)
-	//todo 通过bucket上传
+	//todo upload by bucket
 	err = bucket.PutObject(filename, srcfile)
 	if err != nil {
 		global.ResponseFail(writer, err.Error())

@@ -121,7 +121,7 @@ The test results showed no errors.
 - [x] Change Nick Name
 - [x] Change Avatar
 
-### Possible Future Functions
+## Possible Future Functions
 
 - [x] Send Video
 - [ ] Voice Chat
@@ -228,3 +228,33 @@ Users' password will not be directly saved in database, it will be mixed with a 
 
  - Add Friend via email (no need to know friend's ID)
  - Increase jump correlation between pages
+
+# Sprint2
+
+### Sprint2 Demo
+
+https://youtu.be/QZf61EtCu3o
+
+### API doc link
+
+ https://easydoc.net/s/88012132/
+
+## Functions
+
+- [x] Register
+- [x] Login
+- [x] Private Chat
+- [x] Group Chat
+- [ ] ~~Public Chat~~    (Deleted)
+- [x] Friend System
+- [x] Send Emoji
+- [x] Send Picture
+- [x] Change Nick Name
+- [ ] Change Avatar
+
+## Possible Future Functions
+
+- [ ] Send Video
+- [ ] Voice Chat
+
+Have fun :)

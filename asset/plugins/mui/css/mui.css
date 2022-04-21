@@ -450,6 +450,7 @@ a:active
 .mui-pull-left
 {
     float: left;
+    color: white;
 }
 
 .mui-pull-right
