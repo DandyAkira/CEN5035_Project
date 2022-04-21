@@ -1,5 +1,4 @@
 # Sprint 4
-
 ## Team members
 |  NAME   | GITHUB NAME  | EMAIL | DUTY |
 |  :----:  | :----:  | :----:  | :----:  |
@@ -8,6 +7,33 @@
 | Zixuan Feng  | ErerF | zixuan.feng@ufl.edu | Front-End |
 | Jiaqi Cheng  | TR280 | jiaqicheng@ufl.edu | Back-End |
 
+## Description
+
+In the project, we designed a project named GatorChat.By using the Web-App, users can add friends by email, and send messages, emojis, and images to their friends. Besides, they can build groups or join groups by id. People in the same group can chat with others.
+
+We implemented the backend by using Golang, and implement the frontend by using NodeJS. We used Cypress and Jtest to test our frontend code.
+
+## How to run the app?
+
+### The preparatory work
+
+1. Download the code from main branch
+2. create a new database called "gatorchat" in MySQL by using `CREATE DATABASE gatorchat`
+3. open database/db.go and modify the configuration statements (name and password) according to your own MySQL settings
+![image](https://user-images.githubusercontent.com/54897058/161132955-70296cce-2084-4a2e-9330-d42b0af8ab94.png)
+
+### Run Program
+
+1. run the app by typing
+```
+go run main.go
+```
+
+2. open a browser and jump to http://127.0.0.1 then have fun :)
+
+## Demo video functionality
+
+https://user-images.githubusercontent.com/37530151/164331865-65cfa140-a09a-4c1a-a895-641070567b45.mp4
 ## Cypress Test
 
 ### How to run the test?
@@ -22,11 +48,25 @@ yarn run cypress open
 ```
 - click on the test file (test.js) to start the test
 
-### Demo
+### Cypress Test Demo
 
 https://user-images.githubusercontent.com/47899013/164157706-8aa5cae3-bc3d-491e-976b-4aabebcd7bde.mp4
+## Frontend Unit Test (Jest)
 
-## Unit Test Demo
+###  How to run Jest?
+
+```
+yarn add --dev jest
+```
+
+```
+yarn test
+```
+
+### Testing result
+
+![image](https://raw.githubusercontent.com/KalmanXiong/img_floder/main/WechatIMG2.png)
+## Backend Unit Test Demo
 
 https://user-images.githubusercontent.com/54897058/163485616-75a87147-6d76-4c9a-91a3-ecaadbb9d872.mp4
 
@@ -37,6 +77,8 @@ https://easydoc.net/s/88012132
 ## Project Board Link
 https://github.com/DandyAkira/CEN5035_Project/projects
 
+## Sprint4 deliverables Link
+https://github.com/DandyAkira/CEN5035_Project
 ## Back End Log
 
 ### Update (April 15 2022)
